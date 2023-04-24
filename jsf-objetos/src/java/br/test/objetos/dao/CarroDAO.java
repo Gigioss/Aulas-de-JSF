@@ -23,7 +23,7 @@ public class CarroDAO {
         if(carro.getId()==null){        
         ps = conexao.prepareStatement("INSERT INTO `carro`(`modelo`,`fabricante`,`cor`,`ano`)VALUES(?,?,?,?);");  
         }else{
-            ps=conexao.prepareStatement("update carro set modeo=?,fabricante=?,cor=?,ano=? where id=?");
+            ps=conexao.prepareStatement("update carro set modelo=?,fabricante=?,cor=?,ano=? where idtable1 = ?");
             ps.setInt(5, carro.getId());
         }
         
