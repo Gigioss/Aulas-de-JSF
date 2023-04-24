@@ -1,1 +1,0 @@
-INSERT INTO `sistema-carros`.`carro`(`idtable1`,`modelo`,`fabricante`,`cor`,`ano`)VALUES(<{idtable1: }>,<{modelo: },<{fabricante: }>,<{cor: }>,<{ano: }>);
