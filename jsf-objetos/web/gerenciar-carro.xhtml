@@ -6,29 +6,30 @@
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
              template="template.xhtml">
 
-    <h:form>
-        <p:toolbar>
-           
-            <p:toolbarGroup align="">
-                <p:commandButton value="Adicionar/Salvar" action="#{carroBean.adicionar()}" update="@form"></p:commandButton>           
-                <p:commandButton value="Listar" action="#{carroBean.Listar()}" update="@form"></p:commandButton>                
-            </p:toolbarGroup>
-        </p:toolbar>
-        <p:messages autoUpdate="true" showDetail="true" ></p:messages>
-        <fieldset legend="Objetos">     
-            <p:panelGrid columns="2">
-                <h:outputLabel value="Modelo"></h:outputLabel>
-                <p:inputText id="Modelo" value="#{carroBean.carro.modelo}"></p:inputText>
-                <h:outputLabel value="Fabricante"></h:outputLabel>
-                <p:inputText id="Fabricante" value="#{carroBean.carro.fabricante}"></p:inputText>
-                <h:outputLabel value="Cor"></h:outputLabel>
-                <p:inputText id="Cor" value="#{carroBean.carro.cor}"></p:inputText>
-                <h:outputLabel value="Ano"></h:outputLabel>
-                <p:calendar value="#{carroBean.carro.ano}"></p:calendar>
-            </p:panelGrid>
-            <p:dataTable value="#{carroBean.carros}" var="carro">
-                <p:column>
-                    <p:commandButton value="Editar" action="#{carroBean.Editar(carro)}" update="@form"></p:commandButton>
+    <h:form> 
+    <h:form>  
+        <p:fieldset legend="Objetos">
+            <p:messages autoUpdate="true" showDetail="true" ></p:messages>
+            <p:toolbar>
+                <p:toolbarGroup align="">
+                    <p:commandButton value="Novo" action="#{carroBean.novo()}" update="@form"></p:commandButton>                
+                    <p:commandButton value="Salvar" action="#{carroBean.salvar()}" disabled="#{carroBean.busca==true}" update="@form"></p:commandButton>           
+                    <p:commandButton value="Buscar" action="#{carroBean.buscar()}" update="@form"></p:commandButton>                
+                </p:toolbarGroup>
+            </p:toolbar>
+            <p:panelGrid columns="2" rendered="#{carroBean.busca==false}">
+                    <h:outputLabel value="Modelo"></h:outputLabel>
+                    <p:inputText id="Modelo" value="#{carroBean.entidade.modelo}"></p:inputText>
+                    <h:outputLabel value="Fabricante"></h:outputLabel>
+                    <p:inputText id="Fabricante" value="#{carroBean.entidade.fabricante}"></p:inputText>
+                    <h:outputLabel value="Cor"></h:outputLabel>
+                    <p:inputText id="Cor" value="#{carroBean.entidade.cor}"></p:inputText>
+                    <h:outputLabel value="Ano"></h:outputLabel>
+                    <p:calendar value="#{carroBean.entidade.ano}"></p:calendar>
+                </p:panelGrid>
+            <p:dataTable value="#{carroBean.entidades}" var="carro" rendered="#{carroBean.busca==true}">
+                    <p:column>
+                    <p:commandButton value="Editar" action="#{carroBean.editar(carro)}" update="@form"></p:commandButton>
                     <p:commandButton value="Deletar" action="#{carroBean.deletar(carro)}" update="@form"></p:commandButton>
                 </p:column>
                 <p:column headerText="Modelo" sortBy="#{carro.modelo}">
@@ -44,7 +45,8 @@
                     <h:outputText value="#{carro.ano}"></h:outputText>
                 </p:column>
             </p:dataTable>
-        </fieldset>                 
-    </h:form>
+        </p:fieldset>              
+    </h:form>  
+    </h:form> 
 </ui:decorate>
 

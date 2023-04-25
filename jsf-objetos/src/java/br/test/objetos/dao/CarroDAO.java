@@ -15,7 +15,9 @@ import java.util.List;
 
 
 
-public class CarroDAO {
+public class CarroDAO implements CrudDAO<Carro>{
+    
+    @Override
     public void salvar(Carro carro) throws ErroSistema{
         try{
         Connection conexao=FabricaConexao.getConexao();
@@ -39,16 +41,17 @@ public class CarroDAO {
             throw new ErroSistema("Erro - Ao Salvar carro!",ex);       
         }
     }
-    public void deletar(Integer idCarro) throws ErroSistema{
+    public void deletar(Carro carro) throws ErroSistema{
         try {
             Connection conexao= FabricaConexao.getConexao();
             PreparedStatement ps = conexao.prepareStatement("delete from carro where idtable1 = ?");
-            ps.setInt(1, idCarro);
+            ps.setInt(1, carro.getId());
             ps.execute();
         } catch (SQLException ex) {
             throw new ErroSistema("Erro - Ao deletar o carro!",ex);
         }
-    }
+    }  
+    @Override
     public List<Carro> buscar() throws ErroSistema{
         
         try {
