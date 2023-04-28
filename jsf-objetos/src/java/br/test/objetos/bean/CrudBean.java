@@ -15,10 +15,12 @@ public abstract class CrudBean<E,D extends CrudDAO> {
     private List<E> entidades; 
     public abstract D getDAO();
     public abstract E criarNovaEntidade();
+    
     public void novo(){
         entidade=criarNovaEntidade();
         mudarParaInseri();
     }  
+    
     public void salvar(){
         try {
             getDAO().salvar(entidade);
