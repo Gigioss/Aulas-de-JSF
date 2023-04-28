@@ -21,7 +21,7 @@ USE `sistema-carros` ;
 -- Table `sistema-carros`.`carro`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sistema-carros`.`carro` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `idtable1` INT NOT NULL AUTO_INCREMENT,
   `modelo` VARCHAR(45) NOT NULL,
   `fabricante` VARCHAR(45) NOT NULL,
   `cor` VARCHAR(45) NOT NULL,
