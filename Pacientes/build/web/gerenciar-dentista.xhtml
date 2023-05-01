@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:p="http://primefaces.org/ui">
+
+    
+   <h:form>  
+       <p:fieldset legend="Usuario">
+            <p:messages autoUpdate="true" showDetail="true" ></p:messages>
+            <p:toolbar>
+                <p:toolbarGroup align="">
+                    <p:commandButton value="Novo" action="#{dentistaBean.novo()}" update="@form"></p:commandButton>                
+                    <p:commandButton value="Salvar" action="#{dentistaBean.salvar()}" disabled="#{dentistaBean.busca==true}" update="@form"></p:commandButton>           
+                    <p:commandButton value="Buscar" action="#{dentistaBean.buscar()}" update="@form"></p:commandButton>                
+                </p:toolbarGroup>
+            </p:toolbar>
+        
+       <p:panelGrid columns="2" rendered="#{dentistaBean.busca==false}">
+           <h:outputLabel>Dentista</h:outputLabel> 
+           <p:inputText value="#{dentistaBean.entidade.login}"></p:inputText>
+           <h:outputLabel>Senha</h:outputLabel> 
+           <p:password value="#{dentistaBean.entidade.senha}"></p:password>
+       </p:panelGrid>
+       <p:dataTable value="#{dentistaBean.entidades}" var="user" rendered="#{dentistaBean.busca==true}">
+                <p:column>
+                    <p:commandButton value="Editar" action="#{dentistaBean.editar(user)}" update="@form"></p:commandButton>
+                    <p:commandButton value="Deletar" action="#{dentistaBean.deletar(user)}" update="@form"></p:commandButton>
+                </p:column>
+           <p:column headerText="Login">
+               #{user.login}
+           </p:column>
+           <p:column headerText="Senha">
+               #{user.senha}
+           </p:column>
+       </p:dataTable>
+       </p:fieldset>
+   </h:form>
+</ui:decorate>
