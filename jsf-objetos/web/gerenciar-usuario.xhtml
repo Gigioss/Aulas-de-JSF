@@ -19,9 +19,9 @@
             </p:toolbar>
         
        <p:panelGrid columns="2" rendered="#{usuarioBean.busca==false}">
-           <h:outputLabel></h:outputLabel> 
+           <h:outputLabel>Usuario</h:outputLabel> 
            <p:inputText value="#{usuarioBean.entidade.login}"></p:inputText>
-           <h:outputLabel></h:outputLabel> 
+           <h:outputLabel>Senha</h:outputLabel> 
            <p:password value="#{usuarioBean.entidade.senha}"></p:password>
        </p:panelGrid>
        <p:dataTable value="#{usuarioBean.entidades}" var="user" rendered="#{usuarioBean.busca==true}">

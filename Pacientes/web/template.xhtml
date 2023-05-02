@@ -1,4 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
      
@@ -18,17 +19,33 @@
         </p:menubar>
         <hr></hr>
 
-        <p:schedule view="agendaWeek"
-                    axisFormat="H:mm" 
-                    timeFormat="H:mm" 
-                    minTime="8:00" 
-                    maxTime="20:00"
-                    locale="pt-br"
-                    timeZone="America/Brasilia">
-                    <p:ajax event="dateSelect" />  
-                    <p:ajax event="eventSelect"/>                  
-              
-        </p:schedule>     
+        <p:schedule
+            view="agendaWeek"
+            minTime="8:00"
+            maxTime="20:00"
+            locale="pt"
+            >  
+            <p:ajax event="dateSelect" update="eventDetails" oncomplete="PF('eventDialog').show();" />
+            
+        </p:schedule>
+
+        <p:dialog header="Paciente" widgetVar="eventDialog">
+            <h:panelGrid id="eventDetails" columns="2">
+                <h:outputLabel>Nome</h:outputLabel> 
+                <p:inputText></p:inputText>
+                <h:outputLabel>Telefone</h:outputLabel> 
+                <p:inputText></p:inputText>
+                <h:outputLabel>Email</h:outputLabel> 
+                <p:inputText></p:inputText>
+                <p:outputLabel for="Data" value="Data:" />
+                <p:calendar id="Data" ></p:calendar>
+               
+ 
+                <p:commandButton value="Agendar"></p:commandButton>
+                <p:commandButton value="Cancelar"></p:commandButton>
+            </h:panelGrid>  
+        </p:dialog>
+        
       
         
         <ui:insert></ui:insert>
@@ -41,5 +58,35 @@
  
     
     
-</html>
 
+<script>
+    PrimeFaces.locales ['pt'] = {
+        closeText: 'Fechar',
+        prevText: 'Anterior',
+        nextText: 'Próximo',
+        monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        monthNamesShort: ['Jan', 'Fev', 'Maç', 'Abr', 'Mai', 'Jun', 'Jul', 'Aug', 'Set', 'Out', 'Nov', 'Dez'],
+        dayNames: ['Domingo','Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sabado' ],
+        dayNamesShort: ['Dom','Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+        dayNamesMin: ['D', 'S', 'T', 'Q ', 'Q', 'S', 'S'],
+        weekHeader: 'Semana',
+        firstDay: 0,
+        timeOnlyTitle: 'Apenas Tempo',
+        timeText: 'Periodo',
+        hourText: 'Horas',
+        minuteText: 'Minutos',
+        secondText: 'Segundos',
+        currentText: 'Hoje',
+        ampm: false,
+        year: 'Ano',
+        month: 'Mês',
+        week: 'Semana',
+        day: 'Dia',
+        allDayText: 'Dia Todo',
+        moreLinkText: 'avançar',
+        noEventsText: 'Nenhum evento para mostrar',
+        list: 'Visão geral do compromisso'
+    };
+</script>
+
+    </html>
