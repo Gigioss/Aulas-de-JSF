@@ -2,43 +2,46 @@
 package br.test.objetos.entidade;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.ConstraintMode;
 
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.ForeignKey;
 
 @Entity
-@Table(name="fabrica")
-public class Fabrica implements Serializable{
+@Table(name="telefone")
+public class Telefones implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String nome;
     
-    @OneToMany(mappedBy="fabrica",orphanRemoval=true)
-    @Cascade(CascadeType.ALL)
-    private List<Telefones> numero_telefone = new ArrayList<Telefones>();
+    private String numero_telefone;
     
-    
-    
-    public List<Telefones> getNumero_telefone() {
-        return numero_telefone;
-    }
-
-    public void setNumero_telefone(List<Telefones> numero_telefone) {
-        this.numero_telefone = numero_telefone;
-    }
-
-
+    @ManyToOne
+    @JoinColumn(name="telefones",nullable = false)
+    @ForeignKey(name="id_fk")
+    private Fabrica fabrica = new Fabrica();
    
+
+    public Fabrica getFabrica() {
+        return fabrica;
+    }
+
+    public void setFabrica(Fabrica fabrica) {
+        this.fabrica = fabrica;
+    }
+    
+    
+    
+
     public Integer getId() {
         return id;
     }
@@ -47,14 +50,16 @@ public class Fabrica implements Serializable{
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNumero_telefone() {
+        return numero_telefone;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNumero_telefone(String numero_telefone) {
+        this.numero_telefone = numero_telefone;
     }
 
+   
+    
 
      @Override
     public int hashCode() {
@@ -74,7 +79,7 @@ public class Fabrica implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Fabrica other = (Fabrica) obj;
+        final Telefones other = (Telefones) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
