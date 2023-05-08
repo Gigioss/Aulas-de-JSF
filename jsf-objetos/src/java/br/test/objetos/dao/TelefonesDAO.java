@@ -6,18 +6,18 @@ import br.test.objetos.entidade.Telefones;
 import br.test.objetos.util.exception.ErroSistema;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import br.test.objetos.jpa.EntityManagerUtil;
+
 import javax.persistence.TypedQuery;
 
 public class TelefonesDAO implements CrudDAO<Telefones>{
-    private static EntityManagerFactory entityManagerFactory=Persistence.createEntityManagerFactory("sistema-carrosPU");
-    private static EntityManager entityManager=entityManagerFactory.createEntityManager();
-   
+    EntityManager entityManager = EntityManagerUtil.getEntityManager();
     @Override
     public void salvar(Telefones entidade) throws ErroSistema {
     try{
-        if(entidade.getId()==null){        
+        
+        if(entidade.getTelefone_id()==null){   
+            
             entityManager.getTransaction().begin();
             entityManager.persist(entidade);
             entityManager.getTransaction().commit(); 
@@ -27,7 +27,7 @@ public class TelefonesDAO implements CrudDAO<Telefones>{
             entityManager.getTransaction().commit();
         }
         }catch(Exception ex){
-            throw new ErroSistema("Erro - Ao Salvar Fabrica!",ex);       
+            throw new ErroSistema("Erro - Ao Salvar Telefones!",ex);       
         }
     }
 
@@ -35,27 +35,27 @@ public class TelefonesDAO implements CrudDAO<Telefones>{
     public void deletar(Telefones entidade) throws ErroSistema {
           try {
             entityManager.getTransaction().begin();
-            int idEntidade= entidade.getId();
-            String jpql="delete from Fabrica c where id = :idEntidade";
+            int idEntidade= entidade.getTelefone_id();
+            String jpql="delete from Telefones c where telefone_id = :idEntidade";
             entityManager.createQuery(jpql)
                     .setParameter("idEntidade", idEntidade)
                     .executeUpdate();
             entityManager.getTransaction().commit();
            
         } catch (Exception ex) {
-            throw new ErroSistema("Erro - Ao deletar o Fabrica!",ex);
+            throw new ErroSistema("Erro - Ao deletar o Telefones!",ex);
         }
     }
 
     @Override
     public List<Telefones> buscar() throws ErroSistema {
         try {
-            String jpql="select c from Fabrica c";
+            String jpql="select c from Telefones c";
             TypedQuery<Telefones> typedQuery = entityManager.createQuery(jpql,Telefones.class);
-            List<Telefones> Lista_Telefones=typedQuery.getResultList();
-            return Lista_Telefones;
+            //List<Telefones> Lista_Telefones=typedQuery.getResultList();
+            return typedQuery.getResultList();
         } catch (Exception ex) {
-            throw new ErroSistema("Erro - Ao Buscar o Fabrica!",ex);
+            throw new ErroSistema("Erro - Ao Buscar o Telefones!",ex);
         }
     }
     

@@ -3,21 +3,18 @@ package br.test.objetos.dao;
 
 
 import br.test.objetos.entidade.Usuario;
+import br.test.objetos.jpa.EntityManagerUtil;
 import br.test.objetos.util.exception.ErroSistema;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 public class UsuarioDAO implements CrudDAO<Usuario>{
-    private static EntityManagerFactory entityManagerFactory=Persistence.createEntityManagerFactory("sistema-carrosPU");
-    private static EntityManager entityManager=entityManagerFactory.createEntityManager();
-   
+    EntityManager entityManager = EntityManagerUtil.getEntityManager();
     @Override
     public void salvar(Usuario entidade) throws ErroSistema {
     try{
-        if(entidade.getId()==null){        
+        if(entidade.getUsuario_id()==null){        
             entityManager.getTransaction().begin();
             entityManager.persist(entidade);
             entityManager.getTransaction().commit(); 
@@ -35,8 +32,8 @@ public class UsuarioDAO implements CrudDAO<Usuario>{
     public void deletar(Usuario entidade) throws ErroSistema {
           try {
             entityManager.getTransaction().begin();
-            int idEntidade= entidade.getId();
-            String jpql="delete from Usuario c where id = :idEntidade";
+            int idEntidade= entidade.getUsuario_id();
+            String jpql="delete from Usuario c where usuario_id = :idEntidade";
             entityManager.createQuery(jpql)
                     .setParameter("idEntidade", idEntidade)
                     .executeUpdate();

@@ -10,42 +10,38 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
+import javax.persistence.Column;
+
 
 @Entity
 @Table(name="fabrica")
 public class Fabrica implements Serializable{
     @Id
+    @Column(name="fabrica_id", nullable=false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Integer fabrica_id;
     private String nome;
-    
-    @OneToMany(mappedBy="fabrica",orphanRemoval=true)
-    @Cascade(CascadeType.ALL)
-    private List<Telefones> numero_telefone = new ArrayList<Telefones>();
-    
-    
-    
-    public List<Telefones> getNumero_telefone() {
-        return numero_telefone;
-    }
-
-    public void setNumero_telefone(List<Telefones> numero_telefone) {
-        this.numero_telefone = numero_telefone;
-    }
-
-
+    @OneToMany(mappedBy="fabrica",cascade=CascadeType.ALL,orphanRemoval =true)
    
-    public Integer getId() {
-        return id;
+    private List<Telefones> telefones = new ArrayList<>();
+            
+    public Fabrica() {
+        
     }
-
-    public void setId(Integer id) {
-        this.id = id;
+    
+    public void adionarTelefones(Telefones obj){
+        obj.setFabrica(this);
+        this.telefones.add(obj);
     }
+    
+     public void removerTelefones(int index){
+        this.telefones.remove(index);
+    }
+   
+    
 
     public String getNome() {
         return nome;
@@ -55,11 +51,18 @@ public class Fabrica implements Serializable{
         this.nome = nome;
     }
 
+    public Integer getFabrica_id() {
+        return fabrica_id;
+    }
 
-     @Override
+    public void setFabrica_id(Integer fabrica_id) {
+        this.fabrica_id = fabrica_id;
+    }
+
+    @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 23 * hash + Objects.hashCode(this.id);
+        int hash = 5;
+        hash = 41 * hash + Objects.hashCode(this.fabrica_id);
         return hash;
     }
 
@@ -75,11 +78,28 @@ public class Fabrica implements Serializable{
             return false;
         }
         final Fabrica other = (Fabrica) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        if (!Objects.equals(this.fabrica_id, other.fabrica_id)) {
             return false;
         }
         return true;
     }
+
+    /**
+     * @return the telefones
+     */
+    public List<Telefones> getTelefones() {
+        return telefones;
+    }
+
+    /**
+     * @param telefones the telefones to set
+     */
+    public void setTelefones(List<Telefones> telefones) {
+        this.telefones = telefones;
+    }
+
+
+ 
     
     
     

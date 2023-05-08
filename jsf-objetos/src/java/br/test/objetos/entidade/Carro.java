@@ -19,7 +19,7 @@ public class Carro implements Serializable{
     
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+  private Integer carro_id;
   
   
   private String modelo;
@@ -62,20 +62,18 @@ public class Carro implements Serializable{
         this.ano = ano;
     }
 
-    public Integer getId(){
-        return id;
+    public Integer getCarro_id() {
+        return carro_id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setCarro_id(Integer carro_id) {
+        this.carro_id = carro_id;
     }
-    
-    
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.id);
+        hash = 29 * hash + Objects.hashCode(this.carro_id);
         return hash;
     }
 
@@ -91,11 +89,13 @@ public class Carro implements Serializable{
             return false;
         }
         final Carro other = (Carro) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        if (!Objects.equals(this.carro_id, other.carro_id)) {
             return false;
         }
         return true;
     }
+
+   
 
     
    

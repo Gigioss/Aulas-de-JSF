@@ -3,21 +3,18 @@ package br.test.objetos.dao;
 
 
 import br.test.objetos.entidade.Fabrica;
+import br.test.objetos.jpa.EntityManagerUtil;
 import br.test.objetos.util.exception.ErroSistema;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 public class FabricaDAO implements CrudDAO<Fabrica>{
-    private static EntityManagerFactory entityManagerFactory=Persistence.createEntityManagerFactory("sistema-carrosPU");
-    private static EntityManager entityManager=entityManagerFactory.createEntityManager();
-   
+    EntityManager entityManager = EntityManagerUtil.getEntityManager();
     @Override
     public void salvar(Fabrica entidade) throws ErroSistema {
     try{
-        if(entidade.getId()==null){        
+        if(entidade.getFabrica_id()==null){        
             entityManager.getTransaction().begin();
             entityManager.persist(entidade);
             entityManager.getTransaction().commit(); 
@@ -35,8 +32,8 @@ public class FabricaDAO implements CrudDAO<Fabrica>{
     public void deletar(Fabrica entidade) throws ErroSistema {
           try {
             entityManager.getTransaction().begin();
-            int idEntidade= entidade.getId();
-            String jpql="delete from Fabrica c where id = :idEntidade";
+            int idEntidade= entidade.getFabrica_id();
+            String jpql="delete from Fabrica c where fabrica_id = :idEntidade";
             entityManager.createQuery(jpql)
                     .setParameter("idEntidade", idEntidade)
                     .executeUpdate();
@@ -52,8 +49,7 @@ public class FabricaDAO implements CrudDAO<Fabrica>{
         try {
             String jpql="select c from Fabrica c";
             TypedQuery<Fabrica> typedQuery = entityManager.createQuery(jpql,Fabrica.class);
-            List<Fabrica> Lista_Fabrica=typedQuery.getResultList();
-            return Lista_Fabrica;
+            return typedQuery.getResultList();
         } catch (Exception ex) {
             throw new ErroSistema("Erro - Ao Buscar o Fabrica!",ex);
         }

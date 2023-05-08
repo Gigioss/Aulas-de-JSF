@@ -14,7 +14,9 @@
                 <p:toolbarGroup align="">
                     <p:commandButton value="Novo" action="#{fabricaBean.novo()}" update="@form"></p:commandButton>                
                     <p:commandButton value="Salvar" action="#{fabricaBean.salvar()}" disabled="#{fabricaBean.busca==true}" update="@form"></p:commandButton>           
-                    <p:commandButton value="Buscar" action="#{fabricaBean.buscar()}" update="@form"></p:commandButton>                
+                    <p:commandButton value="Buscar Fabrica" action="#{fabricaBean.buscar()}" update="@form"></p:commandButton>                
+                    <p:commandButton value="Buscar Telefones" action="#{telefonesBean.buscar()}" update="@form"></p:commandButton>                
+
                 </p:toolbarGroup>
             </p:toolbar>
         
@@ -22,15 +24,7 @@
            <h:outputLabel>Fabricantes</h:outputLabel> 
            <p:inputText value="#{fabricaBean.entidade.nome}"></p:inputText>
         </p:panelGrid>
-            <p:dataTable value="#{fabricaBean.telefones}" var="telefone" rendered="#{fabricaBean.busca==true}">
-                <p:column headerText="Telefones">
-                     <ul>
-                         <ui:repeat value="#{telefone}" var="numero">
-                             <li>#{numero}</li>
-                        </ui:repeat>
-                    </ul>
-                </p:column>
-        </p:dataTable>
+          
             
          <p:dataTable value="#{fabricaBean.entidades}" var="fabricante" rendered="#{fabricaBean.busca==true}">
                 <p:column>
@@ -40,9 +34,20 @@
             <p:column headerText="Fabricante">
                #{fabricante.nome}
             </p:column>
-            <p:column headerText="telefone">
-            </p:column>
         </p:dataTable>
+            
+            <p:dataTable value="#{fabricaBean.entidades}" var="tel">
+                <p:column headerText="Nome">
+                #{tel.telefones}
+                </p:column>
+                <p:column headerText="Telefone">
+                     <ul>
+                         <ui:repeat value="#{tel.telefones}" var="telfabri">
+                          <li>#{telfabri}</li>
+                        </ui:repeat>
+                    </ul>
+                </p:column>
+            </p:dataTable>
         
                 
        </p:fieldset>

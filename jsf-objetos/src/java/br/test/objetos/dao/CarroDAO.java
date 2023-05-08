@@ -1,25 +1,22 @@
 package br.test.objetos.dao;
 
 import br.test.objetos.entidade.Carro;
+import br.test.objetos.jpa.EntityManagerUtil;
 import br.test.objetos.util.exception.ErroSistema;
 import java.util.List;
-import javax.persistence.Persistence;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 
 public class CarroDAO implements CrudDAO<Carro>{
-    private static EntityManagerFactory entityManagerFactory=Persistence.createEntityManagerFactory("sistema-carrosPU");
-    private static EntityManager entityManager=entityManagerFactory.createEntityManager();
-    
+    EntityManager entityManager = EntityManagerUtil.getEntityManager();
     
     
     @Override
     public void salvar(Carro carro) throws ErroSistema{
         try{
       
-        if(carro.getId()==null){        
+        if(carro.getCarro_id()==null){        
             entityManager.getTransaction().begin();
             entityManager.persist(carro);
             entityManager.getTransaction().commit();
@@ -37,8 +34,8 @@ public class CarroDAO implements CrudDAO<Carro>{
     public void deletar(Carro carro) throws ErroSistema{
         try {
             entityManager.getTransaction().begin();
-            int idCarro= carro.getId();
-            String jpql="delete from Carro c where id = :idCarro";
+            int idCarro= carro.getCarro_id();
+            String jpql="delete from Carro c where carro_id = :idCarro";
             entityManager.createQuery(jpql)
                     .setParameter("idCarro", idCarro)
                     .executeUpdate();
