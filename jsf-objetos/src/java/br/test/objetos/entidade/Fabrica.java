@@ -14,35 +14,21 @@ import javax.persistence.Table;
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 
 
 @Entity
 @Table(name="fabrica")
 public class Fabrica implements Serializable{
     @Id
-    @Column(name="fabrica_id", nullable=false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer fabrica_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column(name="nome_fabrica")
     private String nome;
-    @OneToMany(mappedBy="fabrica",cascade=CascadeType.ALL,orphanRemoval =true)
-   
-    private List<Telefones> telefones = new ArrayList<>();
-            
-    public Fabrica() {
-        
-    }
     
-    public void adionarTelefones(Telefones obj){
-        obj.setFabrica(this);
-        this.telefones.add(obj);
-    }
+    @OneToMany(mappedBy="fabrica",fetch=FetchType.EAGER)
+    private List<Telefones> lista_telefones= new ArrayList<Telefones>();;
     
-     public void removerTelefones(int index){
-        this.telefones.remove(index);
-    }
-   
-    
-
     public String getNome() {
         return nome;
     }
@@ -51,18 +37,18 @@ public class Fabrica implements Serializable{
         this.nome = nome;
     }
 
-    public Integer getFabrica_id() {
-        return fabrica_id;
+    public Integer getId() {
+        return id;
     }
 
-    public void setFabrica_id(Integer fabrica_id) {
-        this.fabrica_id = fabrica_id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 41 * hash + Objects.hashCode(this.fabrica_id);
+        hash = 41 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -78,32 +64,12 @@ public class Fabrica implements Serializable{
             return false;
         }
         final Fabrica other = (Fabrica) obj;
-        if (!Objects.equals(this.fabrica_id, other.fabrica_id)) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
-
-    /**
-     * @return the telefones
-     */
-    public List<Telefones> getTelefones() {
-        return telefones;
-    }
-
-    /**
-     * @param telefones the telefones to set
-     */
-    public void setTelefones(List<Telefones> telefones) {
-        this.telefones = telefones;
-    }
-
-
- 
-    
-    
-    
-    
+      
 }
 
 

@@ -11,7 +11,6 @@ import javax.persistence.TypedQuery;
 public class CarroDAO implements CrudDAO<Carro>{
     EntityManager entityManager = EntityManagerUtil.getEntityManager();
     
-    
     @Override
     public void salvar(Carro carro) throws ErroSistema{
         try{

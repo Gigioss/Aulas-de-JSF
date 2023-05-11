@@ -7,50 +7,72 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import org.hibernate.annotations.ForeignKey;
 
 
 @Entity
 @Table(name="telefone")
 public class Telefones implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer telefone_id; 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id; 
+    private String numero_telefone;
     
     @ManyToOne
-    @JoinColumn(name="nome_fabrica",referencedColumnName = "nome",insertable=false,updatable = true)
-   
     private Fabrica fabrica;
     
+    
     public Telefones() {
+       
     }
 
+    /**
+     * @return the id
+     */
+    public Integer getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the numero_telefone
+     */
+    public String getNumero_telefone() {
+        return numero_telefone;
+    }
+
+    /**
+     * @param numero_telefone the numero_telefone to set
+     */
+    public void setNumero_telefone(String numero_telefone) {
+        this.numero_telefone = numero_telefone;
+    }
+
+    /**
+     * @return the fabrica
+     */
     public Fabrica getFabrica() {
         return fabrica;
     }
 
+    /**
+     * @param fabrica the fabrica to set
+     */
     public void setFabrica(Fabrica fabrica) {
         this.fabrica = fabrica;
-    }
-    
-  
-
-    public Integer getTelefone_id() {
-        return telefone_id;
-    }
-
-    public void setTelefone_id(Integer telefone_id) {
-        this.telefone_id = telefone_id;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.telefone_id);
+        int hash = 3;
+        hash = 83 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -66,18 +88,18 @@ public class Telefones implements Serializable{
             return false;
         }
         final Telefones other = (Telefones) obj;
-        if (!Objects.equals(this.telefone_id, other.telefone_id)) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
 
+  
+    
+  
+
 
    
-    
-
-    
-    
     
     
     

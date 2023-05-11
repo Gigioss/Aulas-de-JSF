@@ -1,7 +1,7 @@
 
 package br.test.objetos.dao;
 
-
+import br.test.objetos.entidade.Telefones;
 import br.test.objetos.entidade.Fabrica;
 import br.test.objetos.jpa.EntityManagerUtil;
 import br.test.objetos.util.exception.ErroSistema;
@@ -10,18 +10,19 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 public class FabricaDAO implements CrudDAO<Fabrica>{
+   
     EntityManager entityManager = EntityManagerUtil.getEntityManager();
+    
     @Override
     public void salvar(Fabrica entidade) throws ErroSistema {
-    try{
-        if(entidade.getFabrica_id()==null){        
+    try{       
+        if(entidade.getId()==null){                
             entityManager.getTransaction().begin();
-            entityManager.persist(entidade);
+            entityManager.persist(entidade);       
             entityManager.getTransaction().commit(); 
+            entityManager.close();
         }else{
-            entityManager.getTransaction().begin();
-            entityManager.merge(entidade);
-            entityManager.getTransaction().commit();
+            
         }
         }catch(Exception ex){
             throw new ErroSistema("Erro - Ao Salvar Fabrica!",ex);       
@@ -32,8 +33,8 @@ public class FabricaDAO implements CrudDAO<Fabrica>{
     public void deletar(Fabrica entidade) throws ErroSistema {
           try {
             entityManager.getTransaction().begin();
-            int idEntidade= entidade.getFabrica_id();
-            String jpql="delete from Fabrica c where fabrica_id = :idEntidade";
+            int idEntidade= entidade.getId();
+            String jpql="delete from Fabrica c where id = :idEntidade";
             entityManager.createQuery(jpql)
                     .setParameter("idEntidade", idEntidade)
                     .executeUpdate();

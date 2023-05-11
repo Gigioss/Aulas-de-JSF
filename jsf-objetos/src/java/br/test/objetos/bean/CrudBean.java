@@ -19,7 +19,8 @@ public abstract class CrudBean<E,D extends CrudDAO> {
     public void novo(){
         entidade=criarNovaEntidade();
         mudarParaInseri();
-    }     
+    }  
+     
     public void salvar(){
         try {
             getDAO().salvar(entidade);

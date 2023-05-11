@@ -16,15 +16,12 @@ public class TelefonesDAO implements CrudDAO<Telefones>{
     public void salvar(Telefones entidade) throws ErroSistema {
     try{
         
-        if(entidade.getTelefone_id()==null){   
-            
+        if(entidade.getId()==null){    
             entityManager.getTransaction().begin();
             entityManager.persist(entidade);
             entityManager.getTransaction().commit(); 
         }else{
-            entityManager.getTransaction().begin();
-            entityManager.merge(entidade);
-            entityManager.getTransaction().commit();
+          
         }
         }catch(Exception ex){
             throw new ErroSistema("Erro - Ao Salvar Telefones!",ex);       
@@ -35,7 +32,7 @@ public class TelefonesDAO implements CrudDAO<Telefones>{
     public void deletar(Telefones entidade) throws ErroSistema {
           try {
             entityManager.getTransaction().begin();
-            int idEntidade= entidade.getTelefone_id();
+            int idEntidade= entidade.getId();
             String jpql="delete from Telefones c where telefone_id = :idEntidade";
             entityManager.createQuery(jpql)
                     .setParameter("idEntidade", idEntidade)
