@@ -1,10 +1,12 @@
 
 package br.test.objetos.entidade;
 
+import br.test.objetos.jpa.EntityManagerUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.annotation.PostConstruct;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
 import javax.persistence.Column;
+import javax.persistence.EntityManager;
 import javax.persistence.FetchType;
 
 
@@ -25,9 +28,36 @@ public class Fabrica implements Serializable{
     private Integer id;
     @Column(name="nome_fabrica")
     private String nome;
+    @Column(name="numero")
+    private String numero_telefone;
     
-    @OneToMany(mappedBy="fabrica",fetch=FetchType.EAGER)
+    public String getNumero_telefone() {
+        return numero_telefone;
+    }
+
+    public void setNumero_telefone(String numero_telefone) {
+        this.numero_telefone = numero_telefone;
+    }
+    
+    
+    
+    @OneToMany(mappedBy="fabrica",fetch=FetchType.EAGER,orphanRemoval = true,cascade = CascadeType.ALL )
     private List<Telefones> lista_telefones= new ArrayList<Telefones>();;
+
+    public List<Telefones> getLista_telefones() {
+        return lista_telefones;
+    }
+
+   
+    
+    
+    
+    public void setLista_telefones(List<Telefones> lista_telefones) {
+        this.lista_telefones = lista_telefones;
+    }
+    
+   
+    
     
     public String getNome() {
         return nome;

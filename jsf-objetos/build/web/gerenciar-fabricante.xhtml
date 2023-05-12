@@ -14,33 +14,40 @@
             <p:toolbar>
                 <p:toolbarGroup align="">
                     <p:commandButton value="Novo" action="#{fabricaBean.novo()}" update="@form"></p:commandButton>                
-                    <p:commandButton value="Salvar" action="#{fabricaBean.salvar()}" disabled="#{fabricaBean.busca==true}" update="@form">                 
-                       
+                    <p:commandButton value="Salvar" action="#{fabricaBean.salvar()}" disabled="#{fabricaBean.busca==true}" update="@form">                         
                     </p:commandButton>           
                     <p:commandButton value="Buscar Fabrica" action="#{fabricaBean.buscar()}" update="@form"></p:commandButton>                
-                    <p:commandButton value="Buscar Telefones" action="#{telefonesBean.buscar()}" update="@form"></p:commandButton>                
-
                 </p:toolbarGroup>
             </p:toolbar>
         
-        <p:panelGrid columns="2" rendered="#{fabricaBean.busca==false}">
-           <h:outputLabel>Fabricantes</h:outputLabel> 
-           <p:inputText value="#{fabricaBean.entidade.nome}"></p:inputText>
-           <h:outputLabel>Telefone</h:outputLabel> 
-           <p:inputText value="#{fabricaBean.entidades}"></p:inputText>
-        </p:panelGrid>
+            <p:panelGrid columns="2" rendered="#{fabricaBean.busca==false}">
+               <h:outputLabel>Fabricantes</h:outputLabel> 
+               <p:inputText value="#{fabricaBean.entidade.nome}"></p:inputText>
+               <h:outputLabel>Telefone</h:outputLabel> 
+               <p:inputText value="#{fabricaBean.entidade.numero_telefone}"></p:inputText>
+            </p:panelGrid>
           
             
-         <p:dataTable value="#{telefone.entidades}" var="a" rendered="#{fabricaBean.busca==true}">
-                <p:column>
-                    <p:commandButton value="Editar" action="#{fabricaBean.editar(fabricante)}" update="@form"></p:commandButton>
-                    <p:commandButton value="Deletar" action="#{fabricaBean.deletar(fabricante)}" update="@form"></p:commandButton>
-                </p:column>
-            <p:column>
-               #{a.fabrica}
+     
                 
-            </p:column>
-         </p:dataTable>             
+            <p:dataTable value="#{fabricaBean.fabricas}" var="fabrica">
+                <p:column>
+                    <p:commandButton value="Editar" action="#{fabricaBean.editar(fabrica)}" update="@form"></p:commandButton>
+                    <p:commandButton value="Deletar" action="#{fabricaBean.deletar(fabrica)}" update="@form"></p:commandButton>
+                </p:column>
+                <p:column>
+                #{fabrica.nome}
+                </p:column>
+                <p:column>
+                <ul>
+                    <ui:repeat value="#{fabrica.lista_telefones}" var="modelo">
+                        <li>#{modelo.numero_telefone}</li>
+                </ui:repeat>
+                </ul>
+                </p:column>
+            </p:dataTable>
+       
+            
        </p:fieldset>
    </h:form>
 </ui:decorate>

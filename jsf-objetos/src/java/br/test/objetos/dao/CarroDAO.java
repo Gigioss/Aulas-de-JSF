@@ -12,16 +12,16 @@ public class CarroDAO implements CrudDAO<Carro>{
     EntityManager entityManager = EntityManagerUtil.getEntityManager();
     
     @Override
-    public void salvar(Carro carro) throws ErroSistema{
+    public void salvar(Carro entidade) throws ErroSistema{
         try{
       
-        if(carro.getCarro_id()==null){        
+        if(entidade.getCarro_id()==null){        
             entityManager.getTransaction().begin();
-            entityManager.persist(carro);
+            entityManager.persist(entidade);
             entityManager.getTransaction().commit();
         }else{
             entityManager.getTransaction().begin();
-            entityManager.merge(carro);
+            entityManager.merge(entidade);
             entityManager.getTransaction().commit();
         }
         
@@ -30,17 +30,11 @@ public class CarroDAO implements CrudDAO<Carro>{
         }
     }
     @Override
-    public void deletar(Carro carro) throws ErroSistema{
-        try {
+    public void deletar(Carro entidade) throws ErroSistema{
+          try {
             entityManager.getTransaction().begin();
-            int idCarro= carro.getCarro_id();
-            String jpql="delete from Carro c where carro_id = :idCarro";
-            entityManager.createQuery(jpql)
-                    .setParameter("idCarro", idCarro)
-                    .executeUpdate();
-            entityManager.getTransaction().commit();
-            
-            
+            entityManager.remove(entidade);
+            entityManager.getTransaction().commit();       
         } catch (Exception ex) {
             throw new ErroSistema("Erro - Ao deletar o carro!",ex);
         }

@@ -4,7 +4,7 @@
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>br.test.objetos.entidade.Carro</class>
     <class>br.test.objetos.entidade.Usuario</class>
-    <class>br.test.objetos.entidade.Fabricante</class>
+    <class>br.test.objetos.entidade.Fabrica</class>
     <class>br.test.objetos.entidade.Telefones</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>

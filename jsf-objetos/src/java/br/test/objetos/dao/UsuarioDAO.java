@@ -30,14 +30,10 @@ public class UsuarioDAO implements CrudDAO<Usuario>{
 
     @Override
     public void deletar(Usuario entidade) throws ErroSistema {
-          try {
+        try{    
             entityManager.getTransaction().begin();
-            int idEntidade= entidade.getUsuario_id();
-            String jpql="delete from Usuario c where usuario_id = :idEntidade";
-            entityManager.createQuery(jpql)
-                    .setParameter("idEntidade", idEntidade)
-                    .executeUpdate();
-            entityManager.getTransaction().commit();
+            entityManager.remove(entidade);
+            entityManager.getTransaction().commit();   
            
         } catch (Exception ex) {
             throw new ErroSistema("Erro - Ao deletar o usuario!",ex);
