@@ -21,6 +21,8 @@ private FabricaDAO fabricaDAO;
         if(fabricaDAO==null){
             fabricaDAO=new FabricaDAO();
         }
+        
+        
         return fabricaDAO;
     }
 
@@ -28,15 +30,16 @@ private FabricaDAO fabricaDAO;
     public Fabrica criarNovaEntidade() {
         return new Fabrica();
     }
+    
     private List<Fabrica> fabricas;
     @PostConstruct
     public void carregaFabricas(){
     EntityManager em = EntityManagerUtil.getEntityManager();
+    
     fabricas = em.createQuery("select m from Fabrica m", Fabrica.class)
         .getResultList();
     }
     public List<Fabrica> getFabricas(){
         return fabricas;
     }
-    
 }
