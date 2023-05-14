@@ -4,76 +4,83 @@ package br.test.objetos.entidade;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
 @Entity
-@Table(name="carro")
+@Table(name="carros")
 public class Carro implements Serializable{
     
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer carro_id;
-  
-  
+  private Integer id;  
   private String modelo;
-  private String fabricante;
+  @ManyToOne
+  private Fabrica fabrica;
+  
   private String cor;
   
   @Temporal(TemporalType.DATE)
   private Date ano;
-
-    public String getModelo() {
-        return modelo;
+  
+  public Carro() {
+       
+    }
+  
+  public Fabrica getFabrica() {
+        return fabrica;
     }
 
-    public void setModelo(String modelo) {
+  public void setFabrica(Fabrica fabrica) {
+        this.fabrica = fabrica;
+    }
+
+  
+  public String getModelo() {
+    return modelo;
+  }
+
+  public void setModelo(String modelo) {
         this.modelo = modelo;
     }
 
-    public String getFabricante() {
-        return fabricante;
-    }
-
-    public void setFabricante(String fabricante) {
-        this.fabricante = fabricante;
-    }
-
-    public String getCor() {
+  public String getCor() {
         return cor;
     }
 
-    public void setCor(String cor) {
+  public void setCor(String cor) {
         this.cor = cor;
     }
 
-    public Date getAno() {
+  public Date getAno() {
         
         return ano;
     }
 
-    public void setAno(Date ano) {
+  public void setAno(Date ano) {
         this.ano = ano;
     }
 
-    public Integer getCarro_id() {
-        return carro_id;
+    public Integer getId() {
+        return id;
     }
 
-    public void setCarro_id(Integer carro_id) {
-        this.carro_id = carro_id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.carro_id);
+        hash = 43 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -89,15 +96,10 @@ public class Carro implements Serializable{
             return false;
         }
         final Carro other = (Carro) obj;
-        if (!Objects.equals(this.carro_id, other.carro_id)) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
 
-   
-
-    
-   
-  
 }

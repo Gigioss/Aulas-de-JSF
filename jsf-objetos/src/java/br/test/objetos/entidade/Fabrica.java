@@ -6,8 +6,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import javax.annotation.PostConstruct;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +14,6 @@ import javax.persistence.Table;
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
 import javax.persistence.Column;
-import javax.persistence.EntityManager;
 import javax.persistence.FetchType;
 
 
@@ -42,21 +39,26 @@ public class Fabrica implements Serializable{
     
     
     @OneToMany(mappedBy="fabrica",fetch=FetchType.EAGER,orphanRemoval = true,cascade = CascadeType.ALL )
-    private List<Telefones> lista_telefones= new ArrayList<Telefones>();;
+    private List<Telefones> lista_telefones= new ArrayList<Telefones>();
 
     public List<Telefones> getLista_telefones() {
         return lista_telefones;
     }
-
-   
-    
-    
     
     public void setLista_telefones(List<Telefones> lista_telefones) {
         this.lista_telefones = lista_telefones;
     }
     
-   
+    @OneToMany(mappedBy="fabrica",fetch=FetchType.EAGER,orphanRemoval = true,cascade = CascadeType.ALL )
+    private List<Carro> lista_carro= new ArrayList<Carro>();
+
+    public List<Carro> getLista_carro() {
+        return lista_carro;
+    }
+
+    public void setLista_carro(List<Carro> lista_carro) {
+        this.lista_carro = lista_carro;
+    }
     
     
     public String getNome() {

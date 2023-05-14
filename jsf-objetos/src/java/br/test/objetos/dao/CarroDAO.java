@@ -3,11 +3,9 @@ package br.test.objetos.dao;
 import br.test.objetos.entidade.Carro;
 import br.test.objetos.jpa.EntityManagerUtil;
 import br.test.objetos.util.exception.ErroSistema;
-import com.sun.org.apache.xml.internal.serialize.Serializer;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import br.test.objetos.bean.FabricaBean;
 
 
 public class CarroDAO implements  CrudDAO<Carro>{
@@ -17,7 +15,7 @@ public class CarroDAO implements  CrudDAO<Carro>{
     public void salvar(Carro entidade) throws ErroSistema{
         try{
            
-        if(entidade.getCarro_id()==null){        
+        if(entidade.getId()==null){        
             entityManager.getTransaction().begin();
             entityManager.persist(entidade);
             entityManager.getTransaction().commit();
@@ -31,6 +29,7 @@ public class CarroDAO implements  CrudDAO<Carro>{
             throw new ErroSistema("Erro - Ao Salvar carro!",ex);       
         }
     }
+    
     @Override
     public void deletar(Carro entidade) throws ErroSistema{
           try {

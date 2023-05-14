@@ -22,7 +22,7 @@
                     <h:outputLabel value="Modelo"></h:outputLabel>
                     <p:inputText id="Modelo" value="#{carroBean.entidade.modelo}"></p:inputText>
                     <h:outputLabel value="Fabricante"></h:outputLabel>
-                    <h:selectOneMenu value="#{carroBean.entidade.fabricante}" >
+                    <h:selectOneMenu value="#{carroBean.entidade.fabrica}" >
                         <f:selectItem itemLabel="Escolha Fabricante .." itemValue="#{null}" />
                         <f:selectItems value="#{fabricaBean.fabricas}" 
                                        var="fabricante"                 
