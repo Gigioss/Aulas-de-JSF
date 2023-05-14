@@ -23,10 +23,17 @@ public class Carro implements Serializable{
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;  
   private String modelo;
-  @ManyToOne
-  private Fabrica fabrica;
+  private String fabrica_id;
   
   private String cor;
+
+    public String getFabrica_id() {
+        return fabrica_id;
+    }
+
+    public void setFabrica_id(String fabrica_id) {
+        this.fabrica_id = fabrica_id;
+    }
   
   @Temporal(TemporalType.DATE)
   private Date ano;
@@ -35,13 +42,7 @@ public class Carro implements Serializable{
        
     }
   
-  public Fabrica getFabrica() {
-        return fabrica;
-    }
 
-  public void setFabrica(Fabrica fabrica) {
-        this.fabrica = fabrica;
-    }
 
   
   public String getModelo() {

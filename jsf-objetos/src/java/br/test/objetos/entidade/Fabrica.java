@@ -49,17 +49,6 @@ public class Fabrica implements Serializable{
         this.lista_telefones = lista_telefones;
     }
     
-    @OneToMany(mappedBy="fabrica",fetch=FetchType.EAGER,orphanRemoval = true,cascade = CascadeType.ALL )
-    private List<Carro> lista_carro= new ArrayList<Carro>();
-
-    public List<Carro> getLista_carro() {
-        return lista_carro;
-    }
-
-    public void setLista_carro(List<Carro> lista_carro) {
-        this.lista_carro = lista_carro;
-    }
-    
     
     public String getNome() {
         return nome;

@@ -14,7 +14,6 @@ public class CarroDAO implements  CrudDAO<Carro>{
     @Override
     public void salvar(Carro entidade) throws ErroSistema{
         try{
-           
         if(entidade.getId()==null){        
             entityManager.getTransaction().begin();
             entityManager.persist(entidade);

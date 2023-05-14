@@ -22,8 +22,8 @@
                     <h:outputLabel value="Modelo"></h:outputLabel>
                     <p:inputText id="Modelo" value="#{carroBean.entidade.modelo}"></p:inputText>
                     <h:outputLabel value="Fabricante"></h:outputLabel>
-                    <h:selectOneMenu value="#{carroBean.entidade.fabrica}" >
-                        <f:selectItem itemLabel="Escolha Fabricante .." itemValue="#{null}" />
+                    <h:selectOneMenu value="#{carroBean.entidade.fabrica_id}" >
+                        <f:selectItem itemLabel="Escolha Fabricante .." itemValue="Não escolido" />
                         <f:selectItems value="#{fabricaBean.fabricas}" 
                                        var="fabricante"                 
                                        itemLabel="#{fabricante.nome}"
@@ -43,8 +43,8 @@
                 <p:column headerText="Modelo" sortBy="#{carro.modelo}">
                     <h:outputText value="#{carro.modelo}"></h:outputText>
                 </p:column>
-                <p:column headerText="Fabricante" sortBy="#{carro.fabricante}">
-                    <h:outputText value="#{carro.fabricante}"></h:outputText>
+                <p:column headerText="Fabricante" sortBy="#{carro.fabrica_id}">
+                    <h:outputText value="#{carro.fabrica_id}"></h:outputText>
                 </p:column>
                 <p:column headerText="Cor" sortBy="#{carro.cor}">
                     <h:outputText value="#{carro.cor}"></h:outputText>

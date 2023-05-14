@@ -35,7 +35,6 @@ public class FabricaDAO implements CrudDAO<Fabrica>{
         }catch(Exception ex){
             throw new ErroSistema("Erro - Ao Salvar Fabrica!",ex);       
         }
-        entityManager.close();
     }
      
     @Override
