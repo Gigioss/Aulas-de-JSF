@@ -5,6 +5,7 @@
         <group>
             <file>file:/C:/Aulas-de-JSF/jsf-objetos/web/gerenciar-carro.xhtml</file>
             <file>file:/C:/Aulas-de-JSF/jsf-objetos/web/gerenciar-fabricante.xhtml</file>
+            <file>file:/C:/Aulas-de-JSF/jsf-objetos/web/template.xhtml</file>
             <file>file:/C:/Aulas-de-JSF/jsf-objetos/src/java/br/test/objetos/dao/CarroDAO.java</file>
             <file>file:/C:/Aulas-de-JSF/jsf-objetos/src/java/br/test/objetos/entidade/Fabrica.java</file>
             <file>file:/C:/Aulas-de-JSF/jsf-objetos/src/java/br/test/objetos/entidade/Carro.java</file>
