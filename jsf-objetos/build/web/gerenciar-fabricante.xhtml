@@ -53,7 +53,7 @@
             </p:dataTable>         
             <p:commandButton value="Buscar" action="#{telefonesBean.buscar()}" update="@form"></p:commandButton>                          
             <p:dataTable value="#{telefonesBean.entidades}" var="telefone"  rendered="#{telefonesBean.busca==true}">
-                <p:column headerText="Fabrica"  sortBy="#{converterobjss.telefone.fabrica}" filterBy="#{telefone.fabrica}" filterValue="#{telefone.fabrica}">
+                <p:column headerText="Fabrica"  sortBy="#{telefone.fabrica.toString()}"   filterBy="#{telefone.fabrica.toString()}">
                     <h:outputText value="#{telefone.fabrica}" converter="converterobjss" ></h:outputText>
                 </p:column>
                   <p:column headerText="Telefone" >
