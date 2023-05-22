@@ -2,7 +2,6 @@
 package br.test.objetos.bean;
 
 import br.test.objetos.dao.CarroDAO;
-import br.test.objetos.dao.CrudDAO;
 import br.test.objetos.entidade.Carro;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -11,7 +10,7 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean(name="carroBean")
 @SessionScoped
 public class CarroBean extends CrudBean<Carro,CarroDAO>{
-
+    
     private CarroDAO carroDAO;
     
     @Override

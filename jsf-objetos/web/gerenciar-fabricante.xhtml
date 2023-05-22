@@ -32,12 +32,9 @@
                 <p:column>
                     <p:commandButton value="Editar" action="#{fabricaBean.editar(fabrica)}" update="@form"></p:commandButton>
                     <p:commandButton value="Deletar" action="#{fabricaBean.deletar(fabrica)}" update="@form"></p:commandButton>
-                    <p:commandButton value="Telefone" action="#{fabricaBean.deletar(fabrica)}" update="@form"></p:commandButton>
-                </p:column>
+               </p:column>
                 <p:column headerText="Fabrica" sortBy="#{fabrica.nome}" filterBy="#{fabrica.nome}">
                 #{fabrica.nome}
-                
-                
                 </p:column>
                 <p:column headerText="Telefone" >
                 <ul>
@@ -46,7 +43,24 @@
                     </ui:repeat>
                 </ul>
                 </p:column>
+                 <p:column headerText="Carros" >
+                <ul>
+                    <ui:repeat value="#{fabrica.lista_carros}" var="modelo">
+                        <li>#{modelo.modelo}</li>
+                    </ui:repeat>
+                </ul>
+                </p:column>
+            </p:dataTable>         
+            <p:commandButton value="Buscar" action="#{telefonesBean.buscar()}" update="@form"></p:commandButton>                          
+            <p:dataTable value="#{telefonesBean.entidades}" var="telefone"  rendered="#{telefonesBean.busca==true}">
+                <p:column headerText="Fabrica"  sortBy="#{converterobjss.telefone.fabrica}" filterBy="#{telefone.fabrica}" filterValue="#{telefone.fabrica}">
+                    <h:outputText value="#{telefone.fabrica}" converter="converterobjss" ></h:outputText>
+                </p:column>
+                  <p:column headerText="Telefone" >
+                   #{telefone.numero_telefone}
+                </p:column>
             </p:dataTable>
+            
         </p:fieldset>
-   </h:form>
+    </h:form>
 </ui:decorate>

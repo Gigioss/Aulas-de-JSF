@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,17 +24,11 @@ public class Carro implements Serializable{
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;  
   private String modelo;
-  private String fabrica_id;
-  
   private String cor;
-
-    public String getFabrica_id() {
-        return fabrica_id;
-    }
-
-    public void setFabrica_id(String fabrica_id) {
-        this.fabrica_id = fabrica_id;
-    }
+  
+  @ManyToOne
+  @JoinColumn(name = "fabrica_id")
+  private Fabrica fabrica_carro;
   
   @Temporal(TemporalType.DATE)
   private Date ano;
@@ -42,8 +37,6 @@ public class Carro implements Serializable{
        
     }
   
-
-
   
   public String getModelo() {
     return modelo;
@@ -102,5 +95,21 @@ public class Carro implements Serializable{
         }
         return true;
     }
+
+    /**
+     * @return the fabrica_carro
+     */
+    public Fabrica getFabrica_carro() {
+        return fabrica_carro;
+    }
+
+    /**
+     * @param fabrica_carro the fabrica_carro to set
+     */
+    public void setFabrica_carro(Fabrica fabrica_carro) {
+        this.fabrica_carro = fabrica_carro;
+    }
+
+  
 
 }

@@ -42,4 +42,6 @@ private FabricaDAO fabricaDAO;
     public List<Fabrica> getFabricas(){
         return fabricas;
     }
+ 
+    
 }

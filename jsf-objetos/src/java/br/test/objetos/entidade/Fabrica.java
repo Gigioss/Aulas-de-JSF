@@ -28,6 +28,9 @@ public class Fabrica implements Serializable{
     @Column(name="numero")
     private String numero_telefone;
     
+    @Column(name="carro")
+    private String modelo;
+    
     public String getNumero_telefone() {
         return numero_telefone;
     }
@@ -41,6 +44,9 @@ public class Fabrica implements Serializable{
     @OneToMany(mappedBy="fabrica",fetch=FetchType.EAGER,orphanRemoval = true,cascade = CascadeType.ALL )
     private List<Telefones> lista_telefones= new ArrayList<Telefones>();
 
+    @OneToMany(mappedBy="fabrica_carro",fetch=FetchType.EAGER,orphanRemoval = true,cascade = CascadeType.ALL )
+    private List<Carro> lista_carros= new ArrayList<Carro>();
+    
     public List<Telefones> getLista_telefones() {
         return lista_telefones;
     }
@@ -48,6 +54,7 @@ public class Fabrica implements Serializable{
     public void setLista_telefones(List<Telefones> lista_telefones) {
         this.lista_telefones = lista_telefones;
     }
+    
     
     
     public String getNome() {
@@ -90,6 +97,36 @@ public class Fabrica implements Serializable{
         }
         return true;
     }
+
+    /**
+     * @return the lista_carros
+     */
+    public List<Carro> getLista_carros() {
+        return lista_carros;
+    }
+
+    /**
+     * @param lista_carros the lista_carros to set
+     */
+    public void setLista_carros(List<Carro> lista_carros) {
+        this.lista_carros = lista_carros;
+    }
+
+    /**
+     * @return the modelo
+     */
+    public String getModelo() {
+        return modelo;
+    }
+
+    /**
+     * @param modelo the modelo to set
+     */
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+  
       
 }
 
