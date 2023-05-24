@@ -1,20 +1,40 @@
 
 package br.test.objetos.entidade;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="usuario")
-public class Usuario {
+public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Integer usuario_id;
 
+    @OneToMany(mappedBy="carro_modelo",fetch=FetchType.EAGER,orphanRemoval = true,cascade = CascadeType.ALL )
+    private List<Carro> lista_carros= new ArrayList<Carro>();
+
+    public List<Carro> getLista_carros() {
+        return lista_carros;
+    }
+
+    public void setLista_carros(List<Carro> lista_carros) {
+        this.lista_carros = lista_carros;
+    }
+
+    
     @Override
     public int hashCode() {
         int hash = 7;

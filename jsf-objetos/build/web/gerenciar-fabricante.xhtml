@@ -13,8 +13,8 @@
             <p:messages autoUpdate="true" showDetail="true" ></p:messages>
             <p:toolbar>
                 <p:toolbarGroup align="">
-                    <p:commandButton value="Novo" action="#{fabricaBean.novo()}" update="@form" ></p:commandButton>                
-                    <p:commandButton value="Salvar" action="#{fabricaBean.salvar()}" disabled="#{fabricaBean.busca==true}" update="@form"></p:commandButton>                          
+                    <p:commandButton value="Novo" action="#{fabricaBean.novo()}"  update="@form" ></p:commandButton>                
+                    <p:commandButton value="Salvar" action="#{fabricaBean.salvar()}"  update="@form"></p:commandButton>                          
                 </p:toolbarGroup>
             </p:toolbar>
         
@@ -50,17 +50,37 @@
                     </ui:repeat>
                 </ul>
                 </p:column>
+            
             </p:dataTable>         
-            <p:commandButton value="Buscar" action="#{telefonesBean.buscar()}" update="@form"></p:commandButton>                          
+            <br></br>
+            <p:toolbarGroup align="">
+                <p:commandButton value="Atualizar" action="#{telefonesBean.buscar()}" update="@form"></p:commandButton>                          
+            </p:toolbarGroup>  
+            
             <p:dataTable value="#{telefonesBean.entidades}" var="telefone"  rendered="#{telefonesBean.busca==true}">
-                <p:column headerText="Fabrica"  sortBy="#{telefone.fabrica.toString()}"   filterBy="#{telefone.fabrica.toString()}">
+                <p:column>
+                    <p:commandButton value="Editar Telefone" action="#{telefonesBean.editar(telefone)}" update="@form"></p:commandButton>
+                    <p:commandButton value="Deletar" action="#{telefonesBean.deletar(telefone)}" update="@form"></p:commandButton>
+                </p:column>
+                <p:column headerText="Fabrica"  sortBy="#{telefone.fabrica.toString()}"   filterBy="#{telefone.fabrica.nome}">
                     <h:outputText value="#{telefone.fabrica}" converter="converterobjss" ></h:outputText>
                 </p:column>
-                  <p:column headerText="Telefone" >
-                   #{telefone.numero_telefone}
-                </p:column>
+                    <p:column headerText="Telefone" >
+                    #{telefone.numero_telefone}
+                </p:column>                 
             </p:dataTable>
-            
+            <p:toolbar>  
+                <p:toolbarGroup align="">
+                    <p:commandButton value="Salvar" action="#{telefonesBean.salvar()}" rendered="#{telefonesBean.busca==false}" update="@form"></p:commandButton>
+                </p:toolbarGroup> 
+            </p:toolbar>
+                
+            <p:panelGrid columns="2" rendered="#{telefonesBean.busca==false}">
+                <h:outputLabel>Fabricantes</h:outputLabel> 
+                <p:inputText value="#{telefonesBean.entidade.fabrica}" converter="converterobjss"></p:inputText>
+                <h:outputLabel>Telefone</h:outputLabel> 
+                <p:inputText value="#{telefonesBean.entidade.numero_telefone}"></p:inputText>
+            </p:panelGrid>
         </p:fieldset>
     </h:form>
 </ui:decorate>

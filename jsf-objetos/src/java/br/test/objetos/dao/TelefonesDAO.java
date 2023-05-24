@@ -2,6 +2,7 @@
 package br.test.objetos.dao;
 
 
+import br.test.objetos.entidade.Fabrica;
 import br.test.objetos.entidade.Telefones;
 import br.test.objetos.util.exception.ErroSistema;
 import java.util.List;
@@ -15,13 +16,20 @@ public class TelefonesDAO implements CrudDAO<Telefones>{
     @Override
     public void salvar(Telefones entidade) throws ErroSistema {
     try{
-        
+        System.out.println(entidade.getFabrica());
         if(entidade.getId()==null){    
             entityManager.getTransaction().begin();
             entityManager.persist(entidade);
             entityManager.getTransaction().commit(); 
         }else{
-          
+            
+            
+            Telefones telefones=new Telefones();
+            telefones.setNumero_telefone(entidade.getNumero_telefone());
+            telefones.setFabrica(entidade.getFabrica());
+            entityManager.getTransaction().begin();
+            entityManager.merge(entidade);
+            entityManager.getTransaction().commit();           
         }
         }catch(Exception ex){
             throw new ErroSistema("Erro - Ao Salvar Telefones!",ex);       
@@ -31,9 +39,10 @@ public class TelefonesDAO implements CrudDAO<Telefones>{
     @Override
     public void deletar(Telefones entidade) throws ErroSistema {
           try {
+            
             entityManager.getTransaction().begin();
             int idEntidade= entidade.getId();
-            String jpql="delete from Telefones c where telefone_id = :idEntidade";
+            String jpql="delete from Telefones c where id = :idEntidade";
             entityManager.createQuery(jpql)
                     .setParameter("idEntidade", idEntidade)
                     .executeUpdate();

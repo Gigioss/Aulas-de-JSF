@@ -3,6 +3,7 @@ package br.test.objetos.entidade;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +20,7 @@ public class Telefones implements Serializable{
     private Integer id; 
     private String numero_telefone;
     
-    @ManyToOne
+    @ManyToOne(optional = false,cascade = CascadeType.MERGE)
     private Fabrica fabrica;
     
     

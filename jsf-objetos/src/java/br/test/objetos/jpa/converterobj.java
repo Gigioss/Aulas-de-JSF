@@ -22,7 +22,6 @@ public class converterobj implements Converter,Serializable{
     //tela->objeto
     @Override
     public Object getAsObject(FacesContext fc, UIComponent uic, String string) {
-       System.out.println(string);
        if(string==null||"Não escolido".equals(string)){return null;}
        String jpql="select c from Fabrica c where c.nome = :string";
             TypedQuery<Fabrica> typedQuery = EntityManagerUtil.getEntityManager()

@@ -30,9 +30,26 @@ public class Carro implements Serializable{
   @JoinColumn(name = "fabrica_id")
   private Fabrica fabrica_carro;
   
+  @ManyToOne
+  @JoinColumn(name = "usuario_id")
+  private Carro carro_modelo;
+
+    public Carro getCarro_modelo() {
+        return carro_modelo;
+    }
+
+    public void setCarro_modelo(Carro carro_modelo) {
+        this.carro_modelo = carro_modelo;
+    }
+  
+  
+  
+  
+  
   @Temporal(TemporalType.DATE)
   private Date ano;
   
+ 
   public Carro() {
        
     }

@@ -13,6 +13,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -24,13 +25,18 @@ public class converterobj2 implements Converter,Serializable{
     @Override
     public Object getAsObject(FacesContext fc, UIComponent uic, String string) {
        if(string==null||"Não escolido".equals(string)){return null;}
-       return null;
+       String jpql="select c from Fabrica c where c.nome = :string";
+            TypedQuery<Fabrica> typedQuery = EntityManagerUtil.getEntityManager()
+                    .createQuery(jpql,Fabrica.class)
+                    .setParameter("string", string);
+       //return EntityManagerUtil.getEntityManager().find(Fabrica.class, Integer.parseInt(string));
+       return typedQuery.getSingleResult();
     }
     //tela<-objeto
     @Override
     public String getAsString(FacesContext context, UIComponent component,
 Object object){
-System.out.println(context);
+
 Fabrica automovel = (Fabrica) object;
 if(automovel == null || automovel.getId() == null) return null;
 return String.valueOf(automovel.getNome());
