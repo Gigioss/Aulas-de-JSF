@@ -26,8 +26,7 @@
                 <f:selectItem itemLabel="Escolha Fabricante" itemValue="Não escolido" />
                 <f:selectItems value="#{fabricaBean.fabricas}" 
                                        var="fabricante"                 
-                                       itemLabel="#{fabricante.nome}"
-                                       
+                                       itemLabel="#{fabricante.nome}"                                       
                 />
                 </h:selectOneMenu>
                 <h:outputLabel value="Cor"></h:outputLabel>
@@ -40,16 +39,16 @@
                     <p:commandButton value="Editar" action="#{carroBean.editar(carro)}" update="@form"></p:commandButton>
                     <p:commandButton value="Deletar" action="#{carroBean.deletar(carro)}" update="@form"></p:commandButton>
                 </p:column>
-                <p:column headerText="Modelo" sortBy="#{carro.modelo}">
+                <p:column headerText="Modelo" sortBy="#{carro.modelo}" filterBy="#{carro.modelo}" >
                     <h:outputText value="#{carro.modelo}"></h:outputText>
                 </p:column>
-                <p:column headerText="Fabrica">
+                <p:column headerText="Fabrica" sortBy="#{carro.fabrica_carro.toString()}" filterBy="#{carro.fabrica_carro.nome}">
                     <h:outputText value="#{carro.fabrica_carro}" converter="converterobjs" ></h:outputText>
                 </p:column>
-                <p:column headerText="Cor" sortBy="#{carro.cor}">
+                <p:column headerText="Cor" sortBy="#{carro.cor}" filterBy="#{carro.cor}">
                     <h:outputText value="#{carro.cor}"></h:outputText>
                 </p:column>
-                <p:column headerText="Ano" sortBy="#{carro.ano}">
+                <p:column headerText="Ano" sortBy="#{carro.ano}" filterBy="#{carro.ano}">
                     <h:outputText value="#{carro.ano}"></h:outputText>
                 </p:column>
             </p:dataTable>

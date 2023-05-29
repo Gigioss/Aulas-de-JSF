@@ -8,11 +8,12 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,24 +22,26 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private Integer usuario_id;
+    private Integer id;
+   
+    
+    
+    
+    @ManyToMany
+    @JoinTable(name="usuario_carros",
+            joinColumns={@JoinColumn(name="usuario_id")},
+            inverseJoinColumns={@JoinColumn(name="carros_id")})
+    private List<Carro> carros= new ArrayList<Carro>();
 
-    @OneToMany(mappedBy="carro_modelo",fetch=FetchType.EAGER,orphanRemoval = true,cascade = CascadeType.ALL )
-    private List<Carro> lista_carros= new ArrayList<Carro>();
-
-    public List<Carro> getLista_carros() {
-        return lista_carros;
-    }
-
-    public void setLista_carros(List<Carro> lista_carros) {
-        this.lista_carros = lista_carros;
-    }
-
+  
+    
+    
+    
     
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.usuario_id);
+        hash = 67 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -54,18 +57,18 @@ public class Usuario implements Serializable {
             return false;
         }
         final Usuario other = (Usuario) obj;
-        if (!Objects.equals(this.usuario_id, other.usuario_id)) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
 
-    public Integer getUsuario_id() {
-        return usuario_id;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUsuario_id(Integer usuario_id) {
-        this.usuario_id = usuario_id;
+    public void setId(Integer id) {
+        this.id = id;
     }
     
     private String login;
@@ -87,6 +90,20 @@ public class Usuario implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    /**
+     * @return the carros
+     */
+    public List<Carro> getCarros() {
+        return carros;
+    }
+
+    /**
+     * @param carros the carros to set
+     */
+    public void setCarros(List<Carro> carros) {
+        this.carros = carros;
     }
 
  

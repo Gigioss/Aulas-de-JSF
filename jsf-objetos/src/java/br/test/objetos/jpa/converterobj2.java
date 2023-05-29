@@ -24,14 +24,18 @@ public class converterobj2 implements Converter,Serializable{
     //tela->objeto
     @Override
     public Object getAsObject(FacesContext fc, UIComponent uic, String string) {
-       if(string==null||"Não escolido".equals(string)){return null;}
-       String jpql="select c from Fabrica c where c.nome = :string";
+        try{
+        if(string==null||"Não escolido".equals(string)){return null;}
+        String jpql="select c from Fabrica c where c.nome = :string";
             TypedQuery<Fabrica> typedQuery = EntityManagerUtil.getEntityManager()
                     .createQuery(jpql,Fabrica.class)
                     .setParameter("string", string);
        //return EntityManagerUtil.getEntityManager().find(Fabrica.class, Integer.parseInt(string));
        return typedQuery.getSingleResult();
-    }
+        }catch(Exception e){
+            return e;
+        }
+      }
     //tela<-objeto
     @Override
     public String getAsString(FacesContext context, UIComponent component,

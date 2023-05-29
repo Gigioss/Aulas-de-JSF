@@ -15,6 +15,7 @@
                 <p:toolbarGroup align="">
                     <p:commandButton value="Novo" action="#{fabricaBean.novo()}"  update="@form" ></p:commandButton>                
                     <p:commandButton value="Salvar" action="#{fabricaBean.salvar()}"  update="@form"></p:commandButton>                          
+                    <p:commandButton value="Buscar" action="#{fabricaBean.buscar()}"  update="@form"></p:commandButton> 
                 </p:toolbarGroup>
             </p:toolbar>
         
@@ -30,7 +31,7 @@
                 
             <p:dataTable value="#{fabricaBean.fabricas}" var="fabrica" rendered="#{fabricaBean.busca==true}" >
                 <p:column>
-                    <p:commandButton value="Editar" action="#{fabricaBean.editar(fabrica)}" update="@form"></p:commandButton>
+                    <p:commandButton value="Editar Nome/Adicionar Telefone" action="#{fabricaBean.editar(fabrica)}" update="@form"></p:commandButton>
                     <p:commandButton value="Deletar" action="#{fabricaBean.deletar(fabrica)}" update="@form"></p:commandButton>
                </p:column>
                 <p:column headerText="Fabrica" sortBy="#{fabrica.nome}" filterBy="#{fabrica.nome}">
@@ -53,22 +54,28 @@
             
             </p:dataTable>         
             <br></br>
+            <br></br>
+            <p:fieldset legend="Telefones">
             <p:toolbarGroup align="">
                 <p:commandButton value="Atualizar" action="#{telefonesBean.buscar()}" update="@form"></p:commandButton>                          
-            </p:toolbarGroup>  
+            </p:toolbarGroup> 
             
-            <p:dataTable value="#{telefonesBean.entidades}" var="telefone"  rendered="#{telefonesBean.busca==true}">
-                <p:column>
-                    <p:commandButton value="Editar Telefone" action="#{telefonesBean.editar(telefone)}" update="@form"></p:commandButton>
-                    <p:commandButton value="Deletar" action="#{telefonesBean.deletar(telefone)}" update="@form"></p:commandButton>
-                </p:column>
-                <p:column headerText="Fabrica"  sortBy="#{telefone.fabrica.toString()}"   filterBy="#{telefone.fabrica.nome}">
-                    <h:outputText value="#{telefone.fabrica}" converter="converterobjss" ></h:outputText>
-                </p:column>
+            
+                <p:dataTable value="#{telefonesBean.entidades}" var="telefone"  rendered="#{telefonesBean.busca==true}">
+                    <p:column>
+                        <p:commandButton value="Editar Telefone" action="#{telefonesBean.editar(telefone)}" update="@form"></p:commandButton>
+                        <p:commandButton value="Deletar" action="#{telefonesBean.deletar(telefone)}" update="@form"></p:commandButton>
+                    </p:column>
+                    <p:column headerText="Fabrica"  sortBy="#{telefone.fabrica.toString()}"   filterBy="#{telefone.fabrica.nome}">
+                        <h:outputText value="#{telefone.fabrica}" converter="converterobjss" ></h:outputText>
+                    </p:column>
                     <p:column headerText="Telefone" >
-                    #{telefone.numero_telefone}
-                </p:column>                 
-            </p:dataTable>
+                        #{telefone.numero_telefone}
+                    </p:column>                 
+                </p:dataTable>
+            </p:fieldset>
+            
+            
             <p:toolbar>  
                 <p:toolbarGroup align="">
                     <p:commandButton value="Salvar" action="#{telefonesBean.salvar()}" rendered="#{telefonesBean.busca==false}" update="@form"></p:commandButton>
@@ -81,6 +88,7 @@
                 <h:outputLabel>Telefone</h:outputLabel> 
                 <p:inputText value="#{telefonesBean.entidade.numero_telefone}"></p:inputText>
             </p:panelGrid>
+            
         </p:fieldset>
     </h:form>
 </ui:decorate>

@@ -2,6 +2,7 @@
 package br.test.objetos.dao;
 
 
+import br.test.objetos.entidade.Carro;
 import br.test.objetos.entidade.Usuario;
 import br.test.objetos.jpa.EntityManagerUtil;
 import br.test.objetos.util.exception.ErroSistema;
@@ -14,7 +15,7 @@ public class UsuarioDAO implements CrudDAO<Usuario>{
     @Override
     public void salvar(Usuario entidade) throws ErroSistema {
     try{
-        if(entidade.getUsuario_id()==null){        
+        if(entidade.getId()==null||entidade.getCarros().getClass()==null){    
             entityManager.getTransaction().begin();
             entityManager.persist(entidade);
             entityManager.getTransaction().commit(); 
