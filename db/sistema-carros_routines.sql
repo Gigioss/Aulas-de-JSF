@@ -18,28 +18,12 @@ USE `sistema-carros`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `usuario_carros`
+-- Dumping events for database 'sistema-carros'
 --
 
-DROP TABLE IF EXISTS `usuario_carros`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `usuario_carros` (
-  `usuario_id` int(11) NOT NULL,
-  `carros_id` int(11) NOT NULL,
-  `usuario_carros` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
 --
--- Dumping data for table `usuario_carros`
+-- Dumping routines for database 'sistema-carros'
 --
-
-LOCK TABLES `usuario_carros` WRITE;
-/*!40000 ALTER TABLE `usuario_carros` DISABLE KEYS */;
-INSERT INTO `usuario_carros` VALUES (11,1,NULL),(12,1,NULL),(13,1,NULL),(14,2,NULL);
-/*!40000 ALTER TABLE `usuario_carros` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -50,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-27 20:43:38
+-- Dump completed on 2023-06-01  7:42:09

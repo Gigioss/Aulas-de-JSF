@@ -30,7 +30,7 @@ CREATE TABLE `fabrica` (
   `numero` varchar(45) DEFAULT NULL,
   `carro` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `fabrica` (
 
 LOCK TABLES `fabrica` WRITE;
 /*!40000 ALTER TABLE `fabrica` DISABLE KEYS */;
-INSERT INTO `fabrica` VALUES (2,'fabrica2','22221111',NULL),(3,'fabrica3','33331111',NULL),(6,'fabrica6','66663333',NULL),(8,'fabrica1','11111111',NULL),(9,'fabrica5','55551111',NULL);
+INSERT INTO `fabrica` VALUES (2,'fabrica2','22221111',NULL),(3,'fabrica3','33331111',NULL),(6,'fabrica6','66663333',NULL),(8,'fabrica1','11111111',NULL),(9,'fabrica5','55551111',NULL),(10,'','',NULL);
 /*!40000 ALTER TABLE `fabrica` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-27 20:43:38
+-- Dump completed on 2023-06-01  7:42:08

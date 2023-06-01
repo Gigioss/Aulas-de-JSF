@@ -18,28 +18,27 @@ USE `sistema-carros`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `telefone`
+-- Table structure for table `carros_usuario`
 --
 
-DROP TABLE IF EXISTS `telefone`;
+DROP TABLE IF EXISTS `carros_usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `telefone` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `numero_telefone` varchar(45) NOT NULL,
-  `fabrica_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+CREATE TABLE `carros_usuario` (
+  `carros_id` int(11) DEFAULT NULL,
+  `usuario_id` varchar(45) DEFAULT NULL,
+  `carros_usuario` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `telefone`
+-- Dumping data for table `carros_usuario`
 --
 
-LOCK TABLES `telefone` WRITE;
-/*!40000 ALTER TABLE `telefone` DISABLE KEYS */;
-INSERT INTO `telefone` VALUES (3,'22222223',2),(4,'66661111',6),(5,'66662222',6),(10,'33331111',3),(14,'33331111',3),(16,'11111111',8),(17,'22221111',2),(18,'55551111',9),(19,'22221111',2),(20,'',10);
-/*!40000 ALTER TABLE `telefone` ENABLE KEYS */;
+LOCK TABLES `carros_usuario` WRITE;
+/*!40000 ALTER TABLE `carros_usuario` DISABLE KEYS */;
+INSERT INTO `carros_usuario` VALUES (27,'1',NULL);
+/*!40000 ALTER TABLE `carros_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-01  7:42:09
+-- Dump completed on 2023-06-01  7:42:08

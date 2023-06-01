@@ -32,7 +32,7 @@ CREATE TABLE `carros` (
   `fabrica_id` varchar(45) NOT NULL,
   `usuario_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `carros` (
 
 LOCK TABLES `carros` WRITE;
 /*!40000 ALTER TABLE `carros` DISABLE KEYS */;
-INSERT INTO `carros` VALUES (1,'mod1','cor2','2023-05-02 00:00:00','3',1),(2,'mod2','cor2','2023-05-01 00:00:00','6',4),(6,'mod3','corr','2023-05-04 00:00:00','3',5),(21,'mod4','co3','2023-05-02 00:00:00','3',1),(22,'mod5','co6','2023-05-03 00:00:00','6',4),(23,'mod6','cor6','2023-05-02 00:00:00','9',NULL);
+INSERT INTO `carros` VALUES (25,'mod1','cor1','2023-05-01 00:00:00','2',NULL),(26,'mod3','cor3','2023-05-02 00:00:00','2',NULL),(27,'mod4','cor4','2023-05-03 00:00:00','6',NULL);
 /*!40000 ALTER TABLE `carros` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-27 20:43:38
+-- Dump completed on 2023-06-01  7:42:08
