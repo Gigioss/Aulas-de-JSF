@@ -26,15 +26,14 @@ public class converterobj3 implements Converter,Serializable{
     @Override 
     public Object getAsObject(FacesContext fc, UIComponent uic, String string) {             
         try{  
-        if(string==null||"Não escolido".equals(string)){return null;}
+        if(string==null||"Escolha Carro".equals(string)){return null;}
         String jpql="select c from Carro c where c.modelo = :string";
             TypedQuery<Carro> typedQuery = EntityManagerUtil.getEntityManager()
                     .createQuery(jpql,Carro.class)
                     .setParameter("string", string); 
         return typedQuery.getResultList();
         }catch(Exception e){
-          return e;
-        }
+        }return null;
     }
     //tela<-objeto
     @Override
@@ -46,9 +45,8 @@ public class converterobj3 implements Converter,Serializable{
                 return null;}
             return String.valueOf(automovel.getModelo());
         }
-        catch(Exception e){
-          return null;    
-        }
+        catch(Exception e){         
+        }return null; 
     }
 }
 

@@ -31,11 +31,30 @@ public abstract class CrudBean<E,D extends CrudDAO> {
             Logger.getLogger(CrudBean.class.getName()).log(Level.SEVERE, null, ex);
              adicionarMensagem(ex.getMessage(), FacesMessage.SEVERITY_ERROR);
         }
-    }   
+    }
+    
+     public void adicionar(){
+        try {
+            getDAO().adicionar(entidade);
+            entidade=criarNovaEntidade();
+            adicionarMensagem("Adcionado com sucesso", FacesMessage.SEVERITY_INFO);
+            mudarParaBusca();
+        } catch (ErroSistema ex) {
+            Logger.getLogger(CrudBean.class.getName()).log(Level.SEVERE, null, ex);
+             adicionarMensagem(ex.getMessage(), FacesMessage.SEVERITY_ERROR);
+        }
+    }
+    
+    
     public void editar(E entidade){
         this.entidade=entidade;
         mudarParaEdita();
     }  
+    public void adiciona(E entidade){
+        this.entidade=entidade;
+        mudarParaEdita();
+    }
+    
     public void deletar(E entidade){
         try {
             getDAO().deletar(entidade);

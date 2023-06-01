@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,7 +33,8 @@ public class Carro implements Serializable{
   @JoinColumn(name = "fabrica_id")
   private Fabrica fabrica_carro;
   
-  @ManyToMany(mappedBy="carros", cascade = CascadeType.ALL)
+  @ManyToMany
+  (mappedBy="carros",cascade = CascadeType.ALL)
   private List<Usuario> usuario=new ArrayList<Usuario>();
 
     public List<Usuario> getUsuario() {
@@ -44,6 +44,8 @@ public class Carro implements Serializable{
     public void setUsuarios(List<Usuario> usuario) {
         this.usuario = usuario;
     }
+  
+  
 
   
   @Temporal(TemporalType.DATE)

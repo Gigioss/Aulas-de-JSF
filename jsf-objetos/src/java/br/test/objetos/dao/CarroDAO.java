@@ -51,18 +51,6 @@ public class CarroDAO implements  CrudDAO<Carro> {
             throw new ErroSistema("Erro - Ao deletar o carro!",ex);
         }
     }  
-//    @Override
-//    public List<Carro> buscar() throws ErroSistema{
-//        
-//        try {
-//            String jpql="select c from Carro c";
-//            TypedQuery<Carro> typedQuery = entityManager.createQuery(jpql,Carro.class);
-//            List<Carro> Lista_carro1=typedQuery.getResultList();
-//            return Lista_carro1;
-//        } catch (Exception ex) {
-//            throw new ErroSistema("Erro - Ao Buscar o carro!",ex);
-//        }
-//    }
     
     @Override
     public List<Carro> buscar() throws ErroSistema {
@@ -75,6 +63,11 @@ public class CarroDAO implements  CrudDAO<Carro> {
         } catch (Exception ex) {
             throw new ErroSistema("Erro - Ao Buscar o Carros!",ex);
         }
+    }
+
+    @Override
+    public void adicionar(Carro entidade) throws ErroSistema {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

@@ -39,12 +39,14 @@ public class converterobj2 implements Converter,Serializable{
     //tela<-objeto
     @Override
     public String getAsString(FacesContext context, UIComponent component,
-Object object){
-
-Fabrica automovel = (Fabrica) object;
-if(automovel == null || automovel.getId() == null) return null;
-return String.valueOf(automovel.getNome());
-}
+    Object object){
+            try {
+              Fabrica automovel = (Fabrica) object;
+              if(automovel == null || automovel.getId() == null) return null;
+                return String.valueOf(automovel.getNome());  
+            } catch (Exception e) {
+            }return null;
+    }
     
 }
 

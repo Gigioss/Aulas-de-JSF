@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,21 +24,13 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Integer id;
-   
-    
-    
-    
-    @ManyToMany
-    @JoinTable(name="usuario_carros",
+     
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name="carros_usuario",
             joinColumns={@JoinColumn(name="usuario_id")},
             inverseJoinColumns={@JoinColumn(name="carros_id")})
-    private List<Carro> carros= new ArrayList<Carro>();
+   private List<Carro> carros= new ArrayList<Carro>();
 
-  
-    
-    
-    
-    
     @Override
     public int hashCode() {
         int hash = 7;

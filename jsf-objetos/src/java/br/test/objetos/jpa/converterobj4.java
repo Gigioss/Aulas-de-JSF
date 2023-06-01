@@ -40,10 +40,8 @@ public class converterobj4 implements Converter,Serializable{
                 }
             return retorno;
         }
-        catch(Exception e){
-          System.out.println(e);
-          return null;    
-        }
+        catch(Exception e){     
+        }return null; 
     }
 }
 

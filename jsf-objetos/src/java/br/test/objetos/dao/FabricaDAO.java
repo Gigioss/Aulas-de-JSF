@@ -61,5 +61,10 @@ public class FabricaDAO implements CrudDAO<Fabrica>{
             throw new ErroSistema("Erro - Ao Buscar o Fabrica!",ex);
         }
     }
+
+    @Override
+    public void adicionar(Fabrica entidade) throws ErroSistema {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

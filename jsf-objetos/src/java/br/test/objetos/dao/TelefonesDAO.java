@@ -64,5 +64,10 @@ public class TelefonesDAO implements CrudDAO<Telefones>{
             throw new ErroSistema("Erro - Ao Buscar o Telefones!",ex);
         }
     }
+
+    @Override
+    public void adicionar(Telefones entidade) throws ErroSistema {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
