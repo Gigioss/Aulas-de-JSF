@@ -15,7 +15,7 @@
                 <p:toolbarGroup align="">
                     <p:commandButton value="Novo" action="#{usuarioBean.novo()}" update="@form"></p:commandButton>                
                     <p:commandButton value="Salvar" action="#{usuarioBean.salvar()}" disabled="#{usuarioBean.busca==true}" update="@form"></p:commandButton>           
-                    <p:commandButton value="Buscar" action="#{usuarioBean.buscar()}" update="@form"></p:commandButton>                
+                    <p:commandButton value="Atualizar" action="#{usuarioBean.buscar()}" update="@form"></p:commandButton>                
                </p:toolbarGroup>
             </p:toolbar>
         
@@ -42,20 +42,15 @@
                 <p:column>
                     <p:commandButton value="Editar" action="#{usuarioBean.editar(user)}" update="@form"></p:commandButton>
                     <p:commandButton value="Deletar" action="#{usuarioBean.deletar(user)}" update="@form"></p:commandButton>       
+                    <p:commandButton value="Adicionar Carro" action="#{carrosUsuarioBean.adiciona(user)}" update="@form"></p:commandButton>         
                 </p:column>
-           <p:column headerText="Login" filterBy="#{user.login}">
+           <p:column headerText="Usuario" filterBy="#{user.login}">
                #{user.login}
            </p:column>
            <p:column headerText="Senha">
                #{user.senha}
            </p:column>
-           <p:column headerText="Carros" >
-                <ul>
-                    <ui:repeat value="#{user.lista_carros_usuario}" var="modelo">
-                        <li>#{modelo.carros_id}</li>
-                    </ui:repeat>
-                </ul>
-            </p:column>
+        
          </p:dataTable>
         </p:fieldset>
        
@@ -67,13 +62,33 @@
                         <p:commandButton value="Editar Carro" action="#{carrosUsuarioBean.editar(lista_carros)}" update="@form"></p:commandButton>
                         <p:commandButton value="Deletar" action="#{carrosUsuarioBean.deletar(lista_carros)}" update="@form"></p:commandButton>
                     </p:column>
-                    <p:column headerText="Usuario"  >
+                    <p:column headerText="Usuario"  filterBy="#{lista_carros.usuario}" >
                         <h:outputText value="#{lista_carros.usuario}"  converter="converterobjsss"></h:outputText>
                     </p:column>
-                    <p:column headerText="Telefone" >
+                    <p:column headerText="Carro" >
                         #{lista_carros.carros_id}
                     </p:column>                 
                 </p:dataTable>
+        </p:fieldset>
+       <p:fieldset rendered="#{carrosUsuarioBean.busca==false}">
+         <p:toolbar>
+                <p:toolbarGroup align="">
+                    <p:commandButton value="Salvar" action="#{carrosUsuarioBean.salvar()}" disabled="#{carrosUsuarioBean.busca==true}" update="@form"></p:commandButton>           
+               </p:toolbarGroup>
+            </p:toolbar>
+        <p:panelGrid columns="2" >
+            <h:outputLabel>Usuario</h:outputLabel> 
+            <p:inputText value="#{carrosUsuarioBean.entidade.usuario}"  converter="converterobjsss"></p:inputText>  
+            <h:outputLabel value="Carro"></h:outputLabel>
+            <h:selectOneMenu  value="#{carrosUsuarioBean.entidade.carros_id}"  >
+                <f:selectItem itemLabel="Escolha Carro" itemValue="Não escolido" />
+                <f:selectItems value="#{carroBean.carros}" 
+                                       var="carros"                 
+                                       itemLabel="#{carros.modelo}"
+                                       itemValue="#{carros.modelo}"                                        
+                />
+                </h:selectOneMenu>
+        </p:panelGrid>
         </p:fieldset>
    </h:form>
 </ui:decorate>

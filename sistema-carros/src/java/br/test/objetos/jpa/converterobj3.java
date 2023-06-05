@@ -3,8 +3,7 @@ package br.test.objetos.jpa;
 
 
 
-import br.test.objetos.entidade.Carro;
-import br.test.objetos.entidade.CarrosUsuario;
+
 import br.test.objetos.entidade.Usuario;
 import java.io.Serializable;
 import javax.faces.component.UIComponent;
@@ -29,7 +28,7 @@ public class converterobj3 implements Converter,Serializable{
             TypedQuery<Usuario> typedQuery = EntityManagerUtil.getEntityManager()
                     .createQuery(jpql,Usuario.class)
                     .setParameter("string", string); 
-        return typedQuery.getResultList();
+        return typedQuery.getSingleResult();
         }catch(Exception e){
         }
         return null;

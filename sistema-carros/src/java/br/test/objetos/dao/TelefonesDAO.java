@@ -16,7 +16,6 @@ public class TelefonesDAO implements CrudDAO<Telefones>{
     @Override
     public void salvar(Telefones entidade) throws ErroSistema {
     try{
-        System.out.println(entidade.getFabrica());
         if(entidade.getId()==null){    
             entityManager.getTransaction().begin();
             entityManager.persist(entidade);

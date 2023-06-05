@@ -22,15 +22,18 @@ public class CarrosUsuarioDAO implements CrudDAO<CarrosUsuario>{
     @Override
     public void salvar(CarrosUsuario entidade) throws ErroSistema {
        try{
+        System.out.println(entidade.getUsuario());
+           
         if(entidade.getId()==null){  
             
+            
            
-            entityManager.getTransaction().begin();
-            entityManager.persist(entidade);
-            entityManager.getTransaction().commit();
         }else{
+            CarrosUsuario caruser=new CarrosUsuario();
+            caruser.setCarros_id(entidade.getCarros_id());
+            caruser.setUsuario(entidade.getUsuario());
             entityManager.getTransaction().begin();
-            entityManager.merge(entidade);
+            entityManager.merge(caruser);
             entityManager.getTransaction().commit();
         }
         }catch(Exception ex){
@@ -40,7 +43,9 @@ public class CarrosUsuarioDAO implements CrudDAO<CarrosUsuario>{
 
     @Override
     public void adicionar(CarrosUsuario entidade) throws ErroSistema {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            entityManager.getTransaction().begin();
+            entityManager.persist(entidade);
+            entityManager.getTransaction().commit();
     }
 
     @Override
