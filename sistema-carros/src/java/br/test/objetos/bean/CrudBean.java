@@ -44,8 +44,7 @@ public abstract class CrudBean<E,D extends CrudDAO> {
              adicionarMensagem(ex.getMessage(), FacesMessage.SEVERITY_ERROR);
         }
     }
-    
-    
+       
     public void editar(E entidade){
         this.entidade=entidade;
         mudarParaEdita();

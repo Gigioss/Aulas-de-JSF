@@ -6,6 +6,7 @@
     <class>br.test.objetos.entidade.Usuario</class>
     <class>br.test.objetos.entidade.Fabrica</class>
     <class>br.test.objetos.entidade.Telefones</class>
+    <class>br.test.objetos.entidade.CarrosUsuario</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sistema-carros?zeroDateTimeBehavior=convertToNull"/>

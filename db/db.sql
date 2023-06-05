@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `sistema-carros` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `sistema-carros`;
 -- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
 --
 -- Host: localhost    Database: sistema-carros
@@ -43,10 +41,11 @@ DROP TABLE IF EXISTS `carros_usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `carros_usuario` (
-  `carros_id` int(11) DEFAULT NULL,
-  `usuario_id` varchar(45) DEFAULT NULL,
-  `carros_usuario` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `modelocarro_carros_usuario` varchar(45) NOT NULL,
+  `usuario_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,18 +90,10 @@ CREATE TABLE `usuario` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(45) NOT NULL,
   `senha` varchar(45) NOT NULL,
-  `carros_id` int(11) DEFAULT NULL,
+  `modelocarro` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping events for database 'sistema-carros'
---
-
---
--- Dumping routines for database 'sistema-carros'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -113,4 +104,4 @@ CREATE TABLE `usuario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-01 15:23:44
+-- Dump completed on 2023-06-05  8:16:38

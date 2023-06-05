@@ -2,18 +2,14 @@
 package br.test.objetos.entidade;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,22 +27,7 @@ public class Carro implements Serializable{
   
   @ManyToOne
   @JoinColumn(name = "fabrica_id")
-  private Fabrica fabrica_carro;
-  
-  @ManyToMany
-  (mappedBy="carros",cascade = CascadeType.ALL)
-  private List<Usuario> usuario=new ArrayList<Usuario>();
-
-    public List<Usuario> getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuarios(List<Usuario> usuario) {
-        this.usuario = usuario;
-    }
-  
-  
-
+  private Fabrica fabrica_carro;  
   
   @Temporal(TemporalType.DATE)
   private Date ano;
@@ -63,7 +44,7 @@ public class Carro implements Serializable{
 
   public void setModelo(String modelo) {
         this.modelo = modelo;
-    }
+  }
 
   public String getCor() {
         return cor;

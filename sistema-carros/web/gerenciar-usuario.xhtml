@@ -25,19 +25,20 @@
            <h:outputLabel>Senha</h:outputLabel> 
            <p:password value="#{usuarioBean.entidade.senha}"></p:password>
            <h:outputLabel value="Carro"></h:outputLabel>
-           <h:selectOneMenu  value="#{usuarioBean.entidade.carros}"  converter="converterobjsss" >
+           <h:selectOneMenu  value="#{usuarioBean.entidade.carro}"   >
                 <f:selectItem itemLabel="Escolha Carro" itemValue="Não escolido" />
                 <f:selectItems value="#{carroBean.carros}" 
                                        var="carros"                 
                                        itemLabel="#{carros.modelo}"
-                                       itemValue="#{carros.modelo}"                          
+                                       itemValue="#{carros.modelo}"  
+                                       
                 />
                 </h:selectOneMenu>
-       </p:panelGrid>
+         </p:panelGrid>
             
       
             
-       <p:dataTable value="#{usuarioBean.entidades}" var="user" rendered="#{usuarioBean.busca==true}">
+         <p:dataTable value="#{usuarioBean.entidades}" var="user" rendered="#{usuarioBean.busca==true}">
                 <p:column>
                     <p:commandButton value="Editar" action="#{usuarioBean.editar(user)}" update="@form"></p:commandButton>
                     <p:commandButton value="Deletar" action="#{usuarioBean.deletar(user)}" update="@form"></p:commandButton>       
@@ -48,31 +49,32 @@
            <p:column headerText="Senha">
                #{user.senha}
            </p:column>
-           <p:column headerText="Modelo Carro">
-               <h:outputLabel value="#{user.carros}" converter="converterobjssss" ></h:outputLabel>
-           </p:column>
-       </p:dataTable>
-       </p:fieldset>
-       
-       <p:fieldset>
-           <p:commandButton value="Adicionar Carro" action="#{usuarioBean.adicionar()}" update="@form"></p:commandButton>       
-       
-           <p:dataTable value="#{usuarioBean.entidades}" var="user" rendered="#{usuarioBean.busca==true}">
-           <p:column >
-                <p:commandButton value="Adicionar Carro" action="#{usuarioBean.adiciona(user)}" update="@form"></p:commandButton>       
-           </p:column>
-               <p:column headerText="Login" filterBy="#{user.login}">
-               #{user.login}
-           </p:column>
-               <p:column>
-                    <ul>
-                        <ui:repeat value="#{user}" var="modelo" >
-                            <li><h:outputLabel value="#{modelo.carros}" converter="converterobjssss" ></h:outputLabel></li>
+           <p:column headerText="Carros" >
+                <ul>
+                    <ui:repeat value="#{user.lista_carros_usuario}" var="modelo">
+                        <li>#{modelo.carros_id}</li>
                     </ui:repeat>
                 </ul>
-               </p:column>
-               </p:dataTable>
-       </p:fieldset>
+            </p:column>
+         </p:dataTable>
+        </p:fieldset>
+       
+        <p:fieldset>      
+            <p:commandButton value="Atulizar Carros" action="#{carrosUsuarioBean.buscar()}" update="@form"></p:commandButton>       
+         
+            <p:dataTable value="#{carrosUsuarioBean.entidades}" var="lista_carros"  rendered="#{carrosUsuarioBean.busca==true}">
+                    <p:column>
+                        <p:commandButton value="Editar Carro" action="#{carrosUsuarioBean.editar(lista_carros)}" update="@form"></p:commandButton>
+                        <p:commandButton value="Deletar" action="#{carrosUsuarioBean.deletar(lista_carros)}" update="@form"></p:commandButton>
+                    </p:column>
+                    <p:column headerText="Usuario"  >
+                        <h:outputText value="#{lista_carros.usuario}"  converter="converterobjsss"></h:outputText>
+                    </p:column>
+                    <p:column headerText="Telefone" >
+                        #{lista_carros.carros_id}
+                    </p:column>                 
+                </p:dataTable>
+        </p:fieldset>
    </h:form>
 </ui:decorate>
 

@@ -11,9 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,13 +21,38 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Integer id;
-     
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name="carros_usuario",
-            joinColumns={@JoinColumn(name="usuario_id")},
-            inverseJoinColumns={@JoinColumn(name="carros_id")})
-   private List<Carro> carros= new ArrayList<Carro>();
+    @Column(name="modelocarro")
+    private String carro;
 
+   
+    @OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<CarrosUsuario> lista_carros_usuario= new ArrayList<CarrosUsuario>();
+
+    
+    
+    public List<CarrosUsuario> getLista_carros_usuario() {
+        return lista_carros_usuario;
+    }
+
+    public void setLista_carros_usuario(List<CarrosUsuario> lista_carros_usuario) {
+        this.lista_carros_usuario = lista_carros_usuario;
+    }
+
+    public String getCarro() {
+        return carro;
+    }
+
+    public void setCarro(String carro) {
+        this.carro = carro;
+    }
+      
+    
+    
+  
+    
+    
+    
+   
     @Override
     public int hashCode() {
         int hash = 7;
@@ -85,24 +107,11 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
-    /**
-     * @return the carros
-     */
-    public List<Carro> getCarros() {
-        return carros;
+   
     }
 
-    /**
-     * @param carros the carros to set
-     */
-    public void setCarros(List<Carro> carros) {
-        this.carros = carros;
-    }
 
  
     
-    
-    
-}
-
+  
 
