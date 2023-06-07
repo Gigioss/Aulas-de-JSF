@@ -30,6 +30,7 @@ public class CarrosUsuarioDAO implements CrudDAO<CarrosUsuario>{
            
         }else{
             CarrosUsuario caruser=new CarrosUsuario();
+            caruser.setId(entidade.getId());
             caruser.setCarros_id(entidade.getCarros_id());
             caruser.setUsuario(entidade.getUsuario());
             entityManager.getTransaction().begin();
@@ -43,9 +44,7 @@ public class CarrosUsuarioDAO implements CrudDAO<CarrosUsuario>{
 
     @Override
     public void adicionar(CarrosUsuario entidade) throws ErroSistema {
-            entityManager.getTransaction().begin();
-            entityManager.persist(entidade);
-            entityManager.getTransaction().commit();
+            
     }
 
     @Override

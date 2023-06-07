@@ -7,6 +7,7 @@ package br.test.objetos.entidade;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +33,7 @@ public class CarrosUsuario implements Serializable {
     @Column(name="modelocarro_carros_usuario")
     private String carros_id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="usuario_id")
     private Usuario usuario;
 

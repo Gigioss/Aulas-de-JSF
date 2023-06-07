@@ -74,9 +74,11 @@ public class UsuarioDAO implements CrudDAO<Usuario>{
         
       EntityManager entityManager = EntityManagerUtil.getEntityManager();
         try{
-        
+        CarrosUsuario carro=new CarrosUsuario();
+        carro.setUsuario(entidade);
+        carro.setCarros_id(entidade.getCarro());
         entityManager.getTransaction().begin();
-        entityManager.persist(entidade);
+        entityManager.persist(carro);
         entityManager.getTransaction().commit(); 
         
         }catch(Exception ex){

@@ -38,7 +38,7 @@ public abstract class CrudBean<E,D extends CrudDAO> {
             getDAO().adicionar(entidade);
             entidade=criarNovaEntidade();
             adicionarMensagem("Adcionado com sucesso", FacesMessage.SEVERITY_INFO);
-            mudarParaBusca();
+            mudarParaAdciona();
         } catch (ErroSistema ex) {
             Logger.getLogger(CrudBean.class.getName()).log(Level.SEVERE, null, ex);
              adicionarMensagem(ex.getMessage(), FacesMessage.SEVERITY_ERROR);
@@ -50,8 +50,9 @@ public abstract class CrudBean<E,D extends CrudDAO> {
         mudarParaEdita();
     }  
     public void adiciona(E entidade){
+        System.out.println(entidade);
         this.entidade=entidade;
-        mudarParaEdita();
+        mudarParaAdciona();
     }
     
     public void deletar(E entidade){
@@ -109,7 +110,10 @@ public abstract class CrudBean<E,D extends CrudDAO> {
     }
     public boolean isBusca(){
         return "buscar".equals(estadoTela);
-    }    
+    } 
+      public boolean isAdciona(){
+        return "adciona".equals(estadoTela);
+    } 
     public void mudarParaInseri(){
         estadoTela="inserir";
     }
@@ -118,5 +122,9 @@ public abstract class CrudBean<E,D extends CrudDAO> {
     }
     public void mudarParaBusca(){
         estadoTela="buscar";
+    }
+
+    private void mudarParaAdciona() {
+          estadoTela="adciona";
     }
 }
