@@ -67,16 +67,16 @@
                     </p:column>                 
             </p:dataTable>
         </p:fieldset>
-       
+        <!-- painel mudar modelo do carro!-->
         <p:fieldset rendered="#{carrosUsuarioBean.busca==false and carrosUsuarioBean.adciona==false}">
             <p:toolbar>
                 <p:toolbarGroup align="">
-                    <p:commandButton value="Salvar" action="#{carrosUsuarioBean.salvar()}" disabled="#{carrosUsuarioBean.busca==true}" update="@form"></p:commandButton>           
+                    <p:commandButton value="Salvar" action="#{carrosUsuarioBean.salvar()}" update="@form"></p:commandButton>           
                 </p:toolbarGroup>
             </p:toolbar>
             <p:panelGrid columns="2" >
                 <h:outputLabel>Usuario</h:outputLabel> 
-                <p:inputText value="#{carrosUsuarioBean.entidade.usuario}"  converter="converterobjsss"></p:inputText>  
+                <p:inputText value="#{carrosUsuarioBean.entidade.usuario}" readonly="true" converter="converterobjsss"></p:inputText>  
                 <h:outputLabel value="Carro"></h:outputLabel>
                 <h:selectOneMenu  value="#{carrosUsuarioBean.entidade.carros_id}"  >
                     <f:selectItem itemLabel="Escolha Carro" itemValue="Não escolido" />
@@ -88,6 +88,8 @@
                 </h:selectOneMenu>
             </p:panelGrid>
         </p:fieldset>
+        
+        <!-- painel adicionar carro a um usuario!-->
         <p:fieldset rendered="#{usuarioBean.busca==false and usuarioBean.adciona==true}">
             <p:toolbar>
                 <p:toolbarGroup align="">
