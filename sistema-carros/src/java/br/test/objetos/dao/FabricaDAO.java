@@ -10,17 +10,17 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 public class FabricaDAO implements CrudDAO<Fabrica>{
-    
+    EntityManager entityManager = EntityManagerUtil.getEntityManager();
     
     @Override
     public void salvar(Fabrica entidade) throws ErroSistema {
-        EntityManager entityManager = EntityManagerUtil.getEntityManager();
+        
     try{  
-        Telefones telefone=new Telefones();
-        telefone.setNumero_telefone(entidade.getNumero_telefone());
-        telefone.setFabrica(entidade);    
-        if(entidade.getId()==null){  
             
+        if(entidade.getId()==null){  
+            Telefones telefone=new Telefones();
+            telefone.setNumero_telefone(entidade.getNumero_telefone());
+            telefone.setFabrica(entidade);   
             entityManager.getTransaction().begin();
             entityManager.persist(entidade);    
             entityManager.persist(telefone);
@@ -29,7 +29,6 @@ public class FabricaDAO implements CrudDAO<Fabrica>{
         else{         
             entityManager.getTransaction().begin();
             entityManager.merge(entidade);
-            entityManager.merge(telefone);
             entityManager.getTransaction().commit();
         }
         }catch(Exception ex){
@@ -39,7 +38,6 @@ public class FabricaDAO implements CrudDAO<Fabrica>{
      
     @Override
     public void deletar(Fabrica entidade) throws ErroSistema {
-        EntityManager entityManager = EntityManagerUtil.getEntityManager();
           try {
             entityManager.getTransaction().begin();
             entityManager.remove(entidade);
@@ -50,9 +48,7 @@ public class FabricaDAO implements CrudDAO<Fabrica>{
     }
 
     @Override
-    public List<Fabrica> buscar() throws ErroSistema {
-        EntityManager entityManager = EntityManagerUtil.getEntityManager();
-        
+    public List<Fabrica> buscar() throws ErroSistema {  
         try {
             String jpql="select c from Fabrica c";
             TypedQuery<Fabrica> typedQuery = entityManager.createQuery(jpql,Fabrica.class);
@@ -64,7 +60,12 @@ public class FabricaDAO implements CrudDAO<Fabrica>{
 
     @Override
     public void adicionar(Fabrica entidade) throws ErroSistema {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Telefones telefone=new Telefones();
+        telefone.setNumero_telefone(entidade.getNumero_telefone());
+        telefone.setFabrica(entidade);
+        entityManager.getTransaction().begin(); 
+        entityManager.persist(telefone);
+        entityManager.getTransaction().commit();
     }
     
 }

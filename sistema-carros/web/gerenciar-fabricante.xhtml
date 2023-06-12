@@ -9,7 +9,7 @@
 
     
     <h:form>  
-        <p:fieldset legend="Fabricantes">
+        <p:fieldset legend="Fabricantes" rendered="#{telefonesBean.adciona==false}">
             <p:messages autoUpdate="true" showDetail="true" ></p:messages>
             <p:toolbar>
                 <p:toolbarGroup align="">
@@ -17,22 +17,14 @@
                     <p:commandButton value="Salvar" action="#{fabricaBean.salvar()}" disabled="#{fabricaBean.busca==true}" update="@form"></p:commandButton>                          
                     <p:commandButton value="Atualizar" action="#{fabricaBean.buscar()}"  update="@form"></p:commandButton> 
                 </p:toolbarGroup>
-            </p:toolbar>
-        
-            <p:panelGrid columns="2" rendered="#{fabricaBean.busca==false}">
-               <h:outputLabel>Fabricantes</h:outputLabel> 
-               <p:inputText value="#{fabricaBean.entidade.nome}" placeholder=""></p:inputText>
-               <h:outputLabel>Telefone</h:outputLabel> 
-               <p:inputText value="#{fabricaBean.entidade.numero_telefone}"></p:inputText>
-            </p:panelGrid>
-          
+            </p:toolbar>      
             
-     
-                
             <p:dataTable value="#{fabricaBean.fabricas}" var="fabrica" rendered="#{fabricaBean.busca==true}" >
                 <p:column>
-                    <p:commandButton value="Editar Nome/Adicionar Telefone" action="#{fabricaBean.editar(fabrica)}" update="@form"></p:commandButton>
+                    <p:commandButton value="Editar Fabrica" action="#{fabricaBean.editar(fabrica)}" update="@form"></p:commandButton>
                     <p:commandButton value="Deletar" action="#{fabricaBean.deletar(fabrica)}" update="@form"></p:commandButton>
+                    <p:commandButton value="Adicionar número" action="#{fabricaBean.adiciona(fabrica)}" update="@form"></p:commandButton>
+               
                 </p:column>
                 <p:column headerText="Fabrica" sortBy="#{fabrica.nome}" filterBy="#{fabrica.nome}">
                 #{fabrica.nome}
@@ -52,15 +44,15 @@
                 </ul>
                 </p:column>
             
-            </p:dataTable>         
+            </p:dataTable>    
+        </p:fieldset>
             <br></br>
             <br></br>
-            <p:fieldset legend="Telefones">
+            <!--Tabelea telfones   !-->
+        <p:fieldset legend="Telefones" rendered="#{fabricaBean.busca==true}">
             <p:toolbarGroup align="">
                 <p:commandButton value="Atualizar" action="#{telefonesBean.buscar()}" update="@form"></p:commandButton>                          
-            </p:toolbarGroup> 
-            
-            
+            </p:toolbarGroup>                 
                 <p:dataTable value="#{telefonesBean.entidades}" var="telefone"  rendered="#{telefonesBean.busca==true}">
                     <p:column>
                         <p:commandButton value="Editar Telefone" action="#{telefonesBean.editar(telefone)}" update="@form"></p:commandButton>
@@ -73,22 +65,41 @@
                         #{telefone.numero_telefone}
                     </p:column>                 
                 </p:dataTable>
+        </p:fieldset>
+            
+             <!--Campo para adicionar nova fabrica   !-->
+        <p:fieldset rendered="#{ fabricaBean.inseri==true}">
+            <p:panelGrid columns="2" rendered="#{fabricaBean.busca==false and fabricaBean.adciona==false }">
+               <h:outputLabel>Fabricantes</h:outputLabel> 
+               <p:inputText value="#{fabricaBean.entidade.nome}" ></p:inputText>
+               <h:outputLabel>Telefone</h:outputLabel> 
+               <p:inputText value="#{fabricaBean.entidade.numero_telefone}" ></p:inputText>
+            </p:panelGrid>
+            </p:fieldset>
+            <!--Campo para adicionar o numero   !-->
+            <p:fieldset rendered="#{ fabricaBean.adciona==true}">
+            <p:toolbar>  
+                <p:toolbarGroup align="">
+                    <p:commandButton value="Salvar" action="#{fabricaBean.adicionar()}"  update="@form"></p:commandButton>
+                </p:toolbarGroup> 
+            </p:toolbar>   
+            <p:panelGrid columns="2" >
+               <h:outputLabel>Fabricantes</h:outputLabel> 
+               <p:inputText value="#{fabricaBean.entidade.nome}" readonly="true"></p:inputText>
+               <h:outputLabel>Telefone</h:outputLabel> 
+               <p:inputText value="#{fabricaBean.entidade.numero_telefone}" placeholder=" "></p:inputText>
+            </p:panelGrid>
+            </p:fieldset>
+            
+            <!--Campo para editar o numero   !-->
+            <p:fieldset rendered="#{ fabricaBean.edita==true}">
+            <p:panelGrid columns="2" rendered="#{fabricaBean.busca==false and fabricaBean.adciona==false }">
+               <h:outputLabel>Fabricantes</h:outputLabel> 
+               <p:inputText value="#{fabricaBean.entidade.nome}" ></p:inputText>
+            </p:panelGrid>
             </p:fieldset>
             
             
-            <p:toolbar>  
-                <p:toolbarGroup align="">
-                    <p:commandButton value="Salvar" action="#{telefonesBean.salvar()}" rendered="#{telefonesBean.busca==false}" update="@form"></p:commandButton>
-                </p:toolbarGroup> 
-            </p:toolbar>
-                
-            <p:panelGrid columns="2" rendered="#{telefonesBean.busca==false}">
-                <h:outputLabel>Fabricantes</h:outputLabel> 
-                <p:inputText value="#{telefonesBean.entidade.fabrica}" converter="converterobjss"></p:inputText>
-                <h:outputLabel>Telefone</h:outputLabel> 
-                <p:inputText value="#{telefonesBean.entidade.numero_telefone}"></p:inputText>
-            </p:panelGrid>
-            
-        </p:fieldset>
+        
     </h:form>
 </ui:decorate>
