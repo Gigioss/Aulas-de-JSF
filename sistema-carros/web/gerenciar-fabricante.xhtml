@@ -48,7 +48,7 @@
         </p:fieldset>
             <br></br>
             <br></br>
-            <!--Tabelea telfones   !-->
+            <!--Tabela telefones   !-->
         <p:fieldset legend="Telefones" rendered="#{fabricaBean.busca==true}">
             <p:toolbarGroup align="">
                 <p:commandButton value="Atualizar" action="#{telefonesBean.buscar()}" update="@form"></p:commandButton>                          
@@ -84,19 +84,35 @@
                 </p:toolbarGroup> 
             </p:toolbar>   
             <p:panelGrid columns="2" >
+                
                <h:outputLabel>Fabricantes</h:outputLabel> 
                <p:inputText value="#{fabricaBean.entidade.nome}" readonly="true"></p:inputText>
                <h:outputLabel>Telefone</h:outputLabel> 
-               <p:inputText value="#{fabricaBean.entidade.numero_telefone}" placeholder=" "></p:inputText>
+              <p:inputText value="#{fabricaBean.entidade.numero_telefone}"  placeholder=""></p:inputText>
+             
             </p:panelGrid>
         </p:fieldset>
             
-        <!--Campo para editar o numero   !-->
+        <!--Campo para editar  fabrica   !-->
         <p:fieldset rendered="#{ fabricaBean.edita==true}">
             <p:panelGrid columns="2" rendered="#{fabricaBean.busca==false and fabricaBean.adciona==false }">
                <h:outputLabel>Fabricantes</h:outputLabel> 
-               <p:inputText value="#{fabricaBean.entidade.nome}" ></p:inputText>
+               <p:inputText value="#{fabricaBean.entidade.nome}"></p:inputText>
+               
             </p:panelGrid>
+        </p:fieldset>
+        
+         <!--Campo para editar  fabrica   !-->
+         <p:fieldset rendered="#{ telefonesBean.edita==true}">
+            <p:panelGrid columns="2">
+               <h:outputLabel>Fabricantes</h:outputLabel> 
+               <p:inputText value="#{telefonesBean.entidade.fabrica}" converter="converterobjss"  readonly="true"></p:inputText>
+               <h:outputLabel>Telefone</h:outputLabel> 
+               <p:inputText value="#{telefonesBean.entidade.numero_telefone}"></p:inputText>
+               
+            </p:panelGrid>
+             <p:commandButton value="Salvar" action="#{telefonesBean.salvar()}" update="@form"></p:commandButton>
+                   
         </p:fieldset>
             
             
